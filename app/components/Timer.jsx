@@ -6,24 +6,32 @@ const digitalFont = localFont({
     src: '../static-fonts/digital-7.ttf',
     display: 'swap',
 })
-const Timer = () => {
+const Timer = ({questionAnswered, setQuestionAnswered}) => {
    
     const initialTime = 30 
     const [timeRemaining, setTimeRemaining] = useState(initialTime)
+    
 
     useEffect( () => {
         const timerInterval = setInterval(() => {
+            if (questionAnswered ==false){
             setTimeRemaining((prevTime) => {
+                const timesUp = document.getElementById('timesUp')
                 if (prevTime === 0) {
                     clearInterval(timerInterval)
+                    timesUp.style.visibility = "visible"
                     return 0
                 } else {
                     return prevTime -1
                 }
             })
+            } else {
+                return
+            }
         }, 1000)
+        
         return() => clearInterval(timerInterval)
-    }, []) 
+    }, [questionAnswered]) 
 
    
    
