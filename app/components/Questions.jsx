@@ -16,6 +16,7 @@ const Questions = () => {
           .then((questionData) => {
             setQuestionData(questionData)
             setLoading(false)
+            console.log(data)
           })
       }, [])
      
@@ -25,6 +26,8 @@ const Questions = () => {
     const answerChoice = () => {
         setQuestionAnswered(true)
     }
+
+    
   return (
     <div className='flex flex-col items-center justify-center w-3/4 h-full'>
         <div id='timesUp' className='fixed z-50  h-screen w-screen flex items-center justify-center' style={{visibility: 'hidden'}}>
@@ -39,11 +42,11 @@ const Questions = () => {
                 <Timer questionAnswered={questionAnswered} setQuestionAnswered={setQuestionAnswered} />
             </div>
             <div id="questionSection" className='flex flex-col items-start justify-center w-3/4 h-full  p-8'>
-                <div id="question" className='text-2xl w-full h-1/3 '>{questionData.data.question}</div>
+                <div id="question" className='text-2xl w-full h-1/3 '>{questionData.data.question.includes('&quot;')? questionData.data.question.replaceAll('&quot;', '"') : questionData.data.question}</div>
                 <div id="answers" className='flex items-center justify-start h-2/3 w-full   flex-wrap text-lg'>
                     <button className='flex items-center   w-[47%] h-[30%] mr-2 text-xl bg-answer-bg rounded-md overflow-hidden' onClick={answerChoice}>
                         <div id='letter' className='flex items-center justify-center w-1/6 h-full  bg-blue-400 font-bold'>A</div>
-                        <div className='font-bold  pl-6'>{questionData.data.answers[0]}</div>
+                        <div className='flex font-bold pl-6'>{questionData.data.answers[0]}</div>
                     </button>
                     <button className='flex items-center  w-[47%] h-[30%] mr-2 text-xl bg-answer-bg rounded-md overflow-hidden'>
                         <div id='letter' className='flex items-center justify-center w-1/6 h-full bg-blue-400 font-bold'>B</div>
