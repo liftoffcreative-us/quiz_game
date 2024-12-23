@@ -5,7 +5,7 @@ import { mockQuestionData } from '../test-data/mockData';
 export async function GET() {
   try {
     // use mock data if enabled
-    if(process.env.USE_TEST_DATA) return NextResponse.json(mockQuestionData);
+    if(process.env.USE_TEST_DATA == "TRUE") return NextResponse.json(mockQuestionData);
     
     const apiUrl = 'https://opentdb.com/api.php?amount=1&type=multiple';
 
@@ -17,8 +17,6 @@ export async function GET() {
     }
 
     const data = await response.json();
-
-    console.log(extractQuestionElements(data));
 
     // Return the data as JSON
     return NextResponse.json({
