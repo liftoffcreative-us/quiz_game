@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
+import { mockQuestionData } from '../test-data/mockData';
 
 // Handle the GET request
 export async function GET() {
   try {
-    // Replace with your external API URL
+    // use mock data if enabled
+    if(process.env.USE_TEST_DATA) return NextResponse.json(mockQuestionData);
+    
     const apiUrl = 'https://opentdb.com/api.php?amount=1&type=multiple';
 
     // Fetch data from the external API
@@ -34,6 +37,5 @@ export async function GET() {
 const extractQuestionElements = (data) => {
 
   const firstQuestionInfo = data.results[0];
-
   return {question: firstQuestionInfo.question, answers: [...firstQuestionInfo.incorrect_answers, firstQuestionInfo.correct_answer]};
 };
