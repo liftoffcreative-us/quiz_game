@@ -10,7 +10,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'clock-blue': '#33daff',
+        'answer-bg': '#1a283b',
       },
+      backgroundImage: {
+        'question-bg': "url('../app/images/harry-potter.jpg')",
+      }
     },
   },
   plugins: [],
