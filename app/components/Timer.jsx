@@ -14,8 +14,10 @@ const Timer = () => {
     useEffect( () => {
         const timerInterval = setInterval(() => {
             setTimeRemaining((prevTime) => {
+                const timesUp = document.getElementById('timesUp')
                 if (prevTime === 0) {
                     clearInterval(timerInterval)
+                    timesUp.style.visibility = "visible"
                     return 0
                 } else {
                     return prevTime -1

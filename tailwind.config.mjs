@@ -15,6 +15,7 @@ export default {
       },
       backgroundImage: {
         'question-bg': "url('../app/images/harry-potter.jpg')",
+        'times-up-bg': "url('../app/images/timesUp.svg')",
       }
     },
   },
