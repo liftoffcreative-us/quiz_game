@@ -36,7 +36,7 @@ const Questions = () => {
          <div className='mt-4 ml-2 bg-question-bg bg-cover w-[55%] h-full rounded-md '></div>
         </section>
         <section id="bottomSection" className='flex w-full h-1/2 '>
-            <div id="timerSection" className='flex flex-col w-1/4 h-full '>
+            <div id="timerSection" className='flex flex-col items-center justify-center w-1/4 h-full '>
                 <Timer questionAnswered={questionAnswered} setQuestionAnswered={setQuestionAnswered} />
             </div>
             <div id="questionSection" className='flex flex-col items-start justify-center w-3/4 h-full  p-8'>
