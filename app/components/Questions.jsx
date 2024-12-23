@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Timer from './Timer'
-import hpimage from '../images/harry-potter.jpg'
+
 
 const Questions = () => {
   return (

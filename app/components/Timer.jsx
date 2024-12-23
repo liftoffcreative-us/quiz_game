@@ -30,8 +30,8 @@ const Timer = () => {
   return (
     <div className={digitalFont.className}>
     <div id='timer' className='flex items-center justify-center w-full h-full text-[9rem] text-clock-blue'>
-        <div id="currentTime" className='static text-clock-blue opacity-15'>88</div>
-        <div className='absolute text-clock-blue '>{timeRemaining}</div>             
+        
+        <div className=' text-clock-blue '>{timeRemaining}</div>             
     </div>
 
     </div>
