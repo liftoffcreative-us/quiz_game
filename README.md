@@ -37,3 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Recommended Node Version
 v20.13.1
+
+## Testing
+Add `USE_TEST_DATA=true` to `.env.local` to enable mock data

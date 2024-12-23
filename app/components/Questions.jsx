@@ -26,7 +26,6 @@ const Questions = () => {
     const answerChoice = () => {
         setQuestionAnswered(true)
     }
-
     
   return (
     <div className='flex flex-col items-center justify-center w-3/4 h-full'>
