@@ -11,7 +11,7 @@ const Timer = ({questionAnswered, setQuestionAnswered}) => {
     const initialTime = 20 
     const [timeRemaining, setTimeRemaining] = useState(initialTime)
     
-
+// Handle timer countdown
     useEffect( () => {
         const timerInterval = setInterval(() => {
             if (questionAnswered ==false){
