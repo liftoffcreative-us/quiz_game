@@ -6,7 +6,7 @@ const digitalFont = localFont({
     src: '../static-fonts/Digital Dismay.otf',
     display: 'swap',
 })
-const Timer = ({questionAnswered, setQuestionAnswered}) => {
+const Timer = ({questionAnswered}) => {
    
     const initialTime = 30 
     const [timeRemaining, setTimeRemaining] = useState(initialTime)

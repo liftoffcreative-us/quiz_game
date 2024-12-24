@@ -1,23 +1,34 @@
-
+'use client'
 import Link from 'next/link'
 import React from 'react'
+
+import Image from 'next/image';
 
 const Categories = ({ allCategories }) => {
 
   // print out categories array
   console.log(allCategories);
-
+  
   return (
     <div className='flex flex-col items-center justify-center w-3/4 h-3/4 bg-gray-900 rounded-xl'>
       <h1 className='my-6 text-4xl'>CATEGORIES</h1>
-      <div className='flex items-start flex-wrap gap-6 w-[80%] h-full'>
-        <Link href="/questions" className='border border-white flex flex-col items-center justify-center w-1/6 h-1/4 rounded-lg overflow-hidden'>
+      <div className='flex justify-center items-start flex-wrap gap-6 w-[100%] h-full overflow-y-auto'>
+        { allCategories.slice(0,6).map((category, index) => {
+          const idNum = category.id
+          
+          console
+
+          return(
+            <Link key={index} href="/questions" className='border border-white flex flex-col items-center justify-center w-1/5 h-1/3 rounded-lg overflow-hidden'>
        
-          <div className='w-full h-full bg-[url("../public/History.jpg")] bg-cover bg-right'></div>
-          <div className='w-full flex items-center justify-center bg-blue-900 font-bold text-lg'>HISTORY</div>
+            <Image src="/public/10.jpg" width={1390} height={900} className={`w-full h-[75%] bg-cover bg-right`} />
+            <div className='w-full h-[25%] flex items-center justify-center bg-blue-900 font-bold text-[.7rem] text-center'>{category.name}</div>
          
-        </Link>
+            </Link>
+          )
+        })
         
+        }
       </div>
       
     </div>
