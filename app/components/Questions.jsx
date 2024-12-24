@@ -9,7 +9,6 @@ const Questions = () => {
     const [questionAnswered, setQuestionAnswered] = useState(false)
     const [isLoading, setLoading] = useState(true)
 
-
     useEffect(() => {
         fetch('/api/rand-question')
           .then((res) => res.json())
