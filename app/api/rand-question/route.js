@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { mockQuestionData } from '../test-data/mockData';
+import he from 'he'
 
 // Handle the GET request
 export async function GET() {
@@ -21,7 +22,7 @@ export async function GET() {
     // Return the data as JSON
     return NextResponse.json({
       message: 'Data fetched successfully',
-      data: extractQuestionElements(data)
+      data: formatQuestionData(data)
     });
   } catch (error) {
     // Handle errors and return an appropriate response
@@ -32,8 +33,18 @@ export async function GET() {
   }
 }
 
-const extractQuestionElements = (data) => {
-
+const formatQuestionData = (data) => {
   const firstQuestionInfo = data.results[0];
-  return {question: firstQuestionInfo.question, answers: [...firstQuestionInfo.incorrect_answers, firstQuestionInfo.correct_answer]};
+
+  // decode question data
+  const decodedQuestion = he.decode(firstQuestionInfo.question);
+
+  //decode answers
+  let decodedAnswers = [];
+  firstQuestionInfo.incorrect_answers.forEach(element => {
+    decodedAnswers.push(he.decode(element))
+  });
+  decodedAnswers.push(he.decode(firstQuestionInfo.correct_answer));
+
+  return {question: decodedQuestion, answers: decodedAnswers};
 };
