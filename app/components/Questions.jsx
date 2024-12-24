@@ -20,14 +20,15 @@ const Questions = () => {
           .then((questionData) => {
             setQuestionData(questionData)
             setLoading(false)
-            setRandomNumber(Math.random() - 0.5)
+            // setRandomNumber(Math.random() - 0.5)
+            setSortedAnswers(questionData.data.answers.sort(() => Math.random() - 0.5))
           })
           
       }, [])
      
       if (isLoading) return <p>Loading...</p>
       if (!questionData) return <p>No profile data</p>
-      setSortedAnswers(questionData.data.answers.sort(() =>randomNumber))
+      
     const answerChoice = (index) => {
         setQuestionAnswered(true)
         setSelected(index)
