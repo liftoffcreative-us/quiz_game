@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { mockQuestionData } from '../test-data/mockData';
-import he from 'he'
+
 
 // Handle the GET request
 export async function GET() {

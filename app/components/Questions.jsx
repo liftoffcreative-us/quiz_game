@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Timer from './Timer'
+import Link from 'next/link';
 
 
 const Questions = () => {
@@ -30,21 +31,17 @@ const Questions = () => {
         
         
     }
-
-    const clearTimeUp = () => {
-        window.location.reload()
-    }
-    
+   
 
   return (
     
     <div className='flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2'>
        
         
-        <div id='timesUp' className='fixed z-50  h-full w-full flex items-center justify-center' style={{visibility: 'hidden'}} onClick={clearTimeUp} >
+        <Link href="/categories" id='timesUp' className='fixed z-50  h-full w-full flex items-center justify-center' style={{visibility: 'hidden'}} >
             <div className='static w-screen h-screen bg-black opacity-80'></div>
             <div className='absolute w-1/2 h-1/2 bg-times-up-bg bg-contain bg-no-repeat '></div>
-        </div>
+        </Link>
         <section id="topSection" className='flex items-center w-full h-1/2  overflow-hidden'>
          <div className='mt-4 ml-2 bg-question-bg bg-cover w-[55%] h-full rounded-md '></div>
         
