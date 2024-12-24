@@ -2,7 +2,10 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Categories = () => {
+const Categories = ({ allCategories }) => {
+
+  // print out categories array
+  console.log(allCategories);
 
   return (
     <div className='flex flex-col items-center justify-center w-3/4 h-3/4 bg-gray-900 rounded-xl'>
