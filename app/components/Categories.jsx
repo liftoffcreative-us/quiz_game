@@ -48,10 +48,14 @@ const Categories = ({ allCategories }) => {
               colorIds: [5,11,17,23]
             },            
           ]
+
+          //filter the color array to match the index of the category
           const setColor = (colors.filter((color) => color.colorIds.includes(index)))
+          //pull the color value from the array
           const colorCode = (setColor[0].colorHex)
+          //set the color name
           const colorName = (setColor[0].color_name)
-          console.log(colorCode)
+          
           return(
             <Link key={index} href="/questions" className='border border-white flex flex-col items-center justify-center w-1/5 h-1/3 rounded-lg overflow-hidden'>
        
