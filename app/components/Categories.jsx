@@ -50,12 +50,13 @@ const Categories = ({ allCategories }) => {
           ]
           const setColor = (colors.filter((color) => color.colorIds.includes(index)))
           const colorCode = (setColor[0].colorHex)
+          const colorName = (setColor[0].color_name)
           console.log(colorCode)
           return(
             <Link key={index} href="/questions" className='border border-white flex flex-col items-center justify-center w-1/5 h-1/3 rounded-lg overflow-hidden'>
        
             <Image src={`/${idNum.toString()}.jpg`} alt="Category Image" width={1390} height={900} className='w-full h-[75%] bg-cover bg-right' />
-            <div style={{'--colorHex': colorCode}} className='bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-center'>{category.name}</div>
+            <div style={{'--colorHex': colorCode}} className={colorName === "game-yellow" ? 'bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-gray-600 text-center' :'bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-center'}>{category.name}</div>
          
             </Link>
           )
