@@ -22,6 +22,7 @@ export default {
       backgroundImage: {
         'question-bg': "url('../app/images/harry-potter.jpg')",
         'times-up-bg': "url('../app/images/timesUp.svg')",
+        // 'history-bg': "url('../app/images/history1.jpg')",
       },
       animation: {
         'pulse-fast': 'pulse .5s cubic-bezier(0.4, 0, 0.6, 1) infinite'

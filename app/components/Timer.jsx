@@ -8,7 +8,7 @@ const digitalFont = localFont({
 })
 const Timer = ({questionAnswered, setQuestionAnswered}) => {
    
-    const initialTime = 20 
+    const initialTime = 30 
     const [timeRemaining, setTimeRemaining] = useState(initialTime)
     
 // Handle timer countdown
