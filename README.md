@@ -38,5 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Recommended Node Version
 v20.13.1
 
+## Resources
+https://opentdb.com/api_config.php
+
 ## Testing
 Add `USE_TEST_DATA=TRUE` to `.env.local` to enable mock data
