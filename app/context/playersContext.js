@@ -14,7 +14,12 @@ function playersReducer(state, action) {
         case 'ADD_USER':
             return {...state, players: [...state.players, {playerId: state.players.length, name: action.payload.name, score: 0}]};
         case 'UPDATE_USER':
-            return {...state, [action.payload.id]: {...state[action.payload.id], ...action.payload.data } };
+            const updatedPlayers = state.players.map(player => 
+                player.playerId === action.payload.id
+                ? {...player, score: player.score + 1}
+                : player
+            );
+            return {...state, players: updatedPlayers};
         case 'REMOVE_USER':
             const { [action.payload.id]: _, ...rest } = state;
             return rest;

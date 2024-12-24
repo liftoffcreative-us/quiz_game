@@ -17,7 +17,7 @@ const TestingComponent = () => {
     const addScore = (userId) => { 
         dispatch({
             type: 'UPDATE_USER',
-            payload: { id: userId, data: { score: players[userId].score + 1 } }
+            payload: { id: userId }
         });
     }
 
