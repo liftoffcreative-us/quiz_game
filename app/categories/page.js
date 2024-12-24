@@ -13,7 +13,6 @@ export default function Home() {
             .then((categories) => {
               setCategories(categories)
               setLoading(false)
-              
             })
         }, [])
 

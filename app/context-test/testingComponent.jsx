@@ -4,14 +4,13 @@ import { usePlayersState, usePlayersDispatch } from "../context/playersContext"
 
 const TestingComponent = () => {
     const dispatch = usePlayersDispatch();
-    const players = usePlayersState();
+    const {players, currentTurn} = usePlayersState();
     const [name, setName] = useState(''); 
 
     const addUser = () => {
-        const userId = `user${Date.now()}`; // Unique ID
         dispatch({
         type: 'ADD_USER',
-        payload: { id: userId, data: { name: name || 'New User', score: 0 } },
+        payload: { name: name },
         });
     };
 
@@ -19,6 +18,12 @@ const TestingComponent = () => {
         dispatch({
             type: 'UPDATE_USER',
             payload: { id: userId, data: { score: players[userId].score + 1 } }
+        });
+    }
+
+    const nextTurn = () => {
+        dispatch({
+            type: 'NEXT_TURN',
         });
     }
 
@@ -31,12 +36,16 @@ const TestingComponent = () => {
             placeholder="Enter name"
         />
         <button onClick={addUser}>Add User</button>
+        <p>Current Turn {currentTurn}</p>
+        <button onClick={nextTurn}>Next Turn</button>
 
-        {Object.entries(players).map(([playerId, playerInfo]) => (
-            <div key={playerId}>
-                <h1>{playerInfo.name}</h1>
-                <p>{playerInfo.score}</p>
-                <button onClick={() => addScore(playerId)}>Add Score</button>
+        {Object.entries(players).map(([_key, player]) => (
+            <div key={player.playerId}>
+                <h1 style={{ color: player.playerId === currentTurn ? 'red' : 'white' }}>
+                    {player.name}
+                </h1>
+                <p>{player.score}</p>
+                <button onClick={() => addScore(player.playerId)}>Add Score</button>
             </div>
         ))}
         </div>

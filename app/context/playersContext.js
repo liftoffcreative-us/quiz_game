@@ -2,19 +2,24 @@
 import { createContext, useContext, useReducer } from 'react';
 
 
-// initial state
-const initialState = [];
+// Define initial state
+const initialState = {
+    players: [], // Array of player objects
+    currentTurn: 0, // Index of the current player's turn
+  };
 
 // Reducer
 function playersReducer(state, action) {
     switch (action.type) {
         case 'ADD_USER':
-            return {...state, [action.payload.id]: action.payload.data};
+            return {...state, players: [...state.players, {playerId: state.players.length, name: action.payload.name, score: 0}]};
         case 'UPDATE_USER':
             return {...state, [action.payload.id]: {...state[action.payload.id], ...action.payload.data } };
         case 'REMOVE_USER':
             const { [action.payload.id]: _, ...rest } = state;
             return rest;
+        case 'NEXT_TURN':
+            return {...state, currentTurn: (state.currentTurn + 1) % state.players.length};
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }       
