@@ -140,7 +140,7 @@ export default function ScoreBoardPage() {
   ]
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen bg-gray-900 ">
+    <div className="flex items-center justify-center w-screen h-screen bg-game-bg ">
       <div id="scoreBoard" className="w-full h-full  flex items-center justify-start p-12 flex-col flex-wrap gap-6">
         <Image src="/scoreBoardBanner.png" width={1045} height={260} alt="Score Board Banner" className="w-1/3 mb-4"/>
         <div id="players" className="w-full h-auto flex gap-6 flex-wrap">
@@ -148,7 +148,7 @@ export default function ScoreBoardPage() {
             
             return(
             <div key={index} id="playerCard" className="flex w-[30.5vw] h-[10vw] mt-2 items-center">
-            <div style={{backgroundColor: player.color}}className="static  w-[30.5vw] h-[8vw] rounded-xl border-4 border-black"></div>
+            <div style={{backgroundColor: player.color}} className="static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black"></div>
             <div className="absolute  ml-8 flex flex-col">
             <div className={`${playerFont.className} text-[2.2em] justify-self-start -mt-2 `}>{player.name}</div>
             <div id="stars" className="flex w-[15vw] gap-2">

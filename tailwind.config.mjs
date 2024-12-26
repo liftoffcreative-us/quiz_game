@@ -18,6 +18,7 @@ export default {
         'game-blue': '#00b3ff',
         'game-green': '#3eb53e',
         'game-purple': '#862dba',
+        'game-bg': '#06214e',
       },
       backgroundImage: {
         'question-bg': "url('../app/images/harry-potter.jpg')",

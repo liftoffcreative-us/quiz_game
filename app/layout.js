@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className='w-screen h-screen'
+        className='w-screen h-screen bg-game-bg'
       >
         {children}
       </body>
