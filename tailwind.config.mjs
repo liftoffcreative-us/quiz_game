@@ -20,6 +20,9 @@ export default {
         'game-purple': '#862dba',
         'game-bg': '#06214e',
       },
+      boxShadow:{
+        'glow': '0 0 30px 10px rgba(0, 0, 0, 0.3)',
+      },
       backgroundImage: {
         'question-bg': "url('../app/images/harry-potter.jpg')",
         'times-up-bg': "url('../app/images/timesUp.svg')",

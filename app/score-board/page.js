@@ -11,6 +11,7 @@ export default function ScoreBoardPage() {
   const players = [
     {
       id: 1,
+      currentPlayer: false,
       name: "Player 1",
       color: "#862dba",
       avatar: "/avatars/davinci.jpg",
@@ -43,6 +44,7 @@ export default function ScoreBoardPage() {
     },
     {
       id: 2,
+      currentPlayer: false,
       name: "Player 2",
       color: "#00b3ff",
       avatar: "/avatars/degrasse.jpg",
@@ -75,6 +77,7 @@ export default function ScoreBoardPage() {
     },
     {
       id: 3,
+      currentPlayer: false,
       name: "Player 3",
       color: "#cf1120",
       avatar: "/avatars/curie.jpg",
@@ -107,6 +110,7 @@ export default function ScoreBoardPage() {
     },
     {
       id: 4,
+      currentPlayer: true,
       name: "Player 4",
       color: "#ed8c2b",
       avatar: "/avatars/einstein.jpg",
@@ -148,7 +152,7 @@ export default function ScoreBoardPage() {
             
             return(
             <div key={index} id="playerCard" className="flex w-[30.5vw] h-[10vw] mt-2 items-center">
-            <div style={{backgroundColor: player.color}} className="static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black"></div>
+            <div style={{backgroundColor: player.color}} className={player.currentPlayer ? "static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black ring-4 ring-green-500 shadow-glow shadow-green-500" : "static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black"}></div>
             <div className="absolute  ml-8 flex flex-col">
             <div className={`${playerFont.className} text-[2.2em] justify-self-start -mt-2 `}>{player.name}</div>
             <div id="stars" className="flex w-[15vw] gap-2">
