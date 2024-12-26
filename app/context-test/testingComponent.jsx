@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePlayersState, usePlayersDispatch } from "../context/playersContext"
 
 const TestingComponent = () => {
@@ -12,6 +12,7 @@ const TestingComponent = () => {
         type: 'ADD_USER',
         payload: { name: name },
         });
+        setName(''); // reset input field after adding user
     };
 
     const addScore = (userId) => { 
@@ -34,18 +35,20 @@ const TestingComponent = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter name"
+            style={{ color: 'black', marginRight: '20px' }}
         />
-        <button onClick={addUser}>Add User</button>
+        <button style={{ background: 'white', color: 'black' }} onClick={addUser}>Add User</button>
         <p>Current Turn {currentTurn}</p>
-        <button onClick={nextTurn}>Next Turn</button>
+        <button onClick={nextTurn} style={{ background: 'white', color: 'black', marginBottom: '20px' }}>Next Turn</button>
 
         {Object.entries(players).map(([_key, player]) => (
-            <div key={player.playerId}>
+            <div key={player.playerId} 
+            style={{ border: player.playerId === currentTurn ? '4px solid red' : '2px solid white', padding: '10px', marginBottom: '10px' }}>
                 <h1 style={{ color: player.playerId === currentTurn ? 'red' : 'white' }}>
                     {player.name}
                 </h1>
                 <p>{player.score}</p>
-                <button onClick={() => addScore(player.playerId)}>Add Score</button>
+                <button style={{ background: 'white', color: 'black' }} onClick={() => addScore(player.playerId)}>Add Score</button>
             </div>
         ))}
         </div>
