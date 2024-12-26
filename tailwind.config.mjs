@@ -14,7 +14,7 @@ export default {
         'answer-bg': '#1a283b',
         'game-red': '#cf1120',
         'game-orange': '#ed8c2b',
-        'game-yellow': '#ffe600',
+        'game-pink': '#fc2aaf',
         'game-blue': '#00b3ff',
         'game-green': '#3eb53e',
         'game-purple': '#862dba',

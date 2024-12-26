@@ -3,7 +3,7 @@
 import { useState, useEffect} from 'react';
 import Categories from "../components/Categories";
 
-export default function Home() {
+export default function CategoriesPage() {
     const [categories, setCategories] = useState(null);
     const [isLoading, setLoading] = useState(true)
 
