@@ -68,7 +68,6 @@ export default function PlayerPage() {
 
   //submit the form data
   const handleSubmit = () => {
-    alert('Hello ' + playerName + ' You have selected ' + selectedAvatar);
     dispatch({
       type: 'ADD_USER',
       payload: { name: playerName, avatarName: selectedAvatar },
@@ -87,7 +86,7 @@ export default function PlayerPage() {
         id="container"
         className="flex flex-col gap-4 w-5/6 h-5/6 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-[3rem] px-20 py-12 "
       >
-        <h1 className="text-[3vw] ">Create Your Character</h1>
+        <h1 className="text-[3vw] ">Add A Player</h1>
         <Form
           className="flex flex-col gap-4 h-full w-full "
           onSubmit={handleSubmit}
@@ -104,7 +103,7 @@ export default function PlayerPage() {
           />
           {/* Avatar Selection */}
           <div className="h-[40vh] flex flex-col gap-4">
-            <h2 className="text-[2vw]">Choose your avatar:</h2>
+            <h2 className="text-[2vw]">Choose an avatar:</h2>
             <div id="avatarOptions" className="flex gap-4 flex-wrap">
               {avatars.map((avatar, index) => {
                 return (
