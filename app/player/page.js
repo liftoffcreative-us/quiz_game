@@ -71,9 +71,12 @@ export default function PlayerPage() {
     alert('Hello ' + playerName + ' You have selected ' + selectedAvatar);
     dispatch({
       type: 'ADD_USER',
-      payload: { name: playerName },
+      payload: { name: playerName, avatarName: selectedAvatar },
     });
-    setPlayerName(''); // reset input field after adding user
+
+    // reset input field after adding player
+    setPlayerName('');
+    setSelectedAvatar('');
   };
 
   return (
