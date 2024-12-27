@@ -1,15 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         'clock-blue': '#33daff',
         'answer-bg': '#1a283b',
         'game-red': '#cf1120',
@@ -25,8 +25,8 @@ export default {
         // 'history-bg': "url('../app/images/history1.jpg')",
       },
       animation: {
-        'pulse-fast': 'pulse .5s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-      }
+        'pulse-fast': 'pulse .5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
     },
   },
   plugins: [],
