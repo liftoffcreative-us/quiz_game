@@ -13,15 +13,44 @@ const playerFont = localFont({
 export default function PlayerPage() {
   const [selectedAvatar, setSelectedAvatar] = useState('');
   const [playerName, setPlayerName] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   const avatars = [
-    'cleopatra',
-    'curie',
-    'davinci',
-    'degrasse',
-    'douglass',
-    'einstein',
-    'newton',
+    {
+      id: 1,
+      name: 'cleopatra',
+      selected: false,
+    },
+    {
+      id: 2,
+      name: 'curie',
+      selected: false,
+    },
+    {
+      id: 3,
+      name: 'davinci',
+      selected: false,
+    },
+    {
+      id: 4,
+      name: 'degrasse',
+      selected: false,
+    },
+    {
+      id: 5,
+      name: 'douglass',
+      selected: true,
+    },
+    {
+      id: 6,
+      name: 'einstein',
+      selected: false,
+    },
+    {
+      id: 7,
+      name: 'newton',
+      selected: false,
+    },
   ];
 
   // set avatar choice
@@ -69,34 +98,41 @@ export default function PlayerPage() {
             <div id="avatarOptions" className="flex gap-4 flex-wrap">
               {avatars.map((avatar, index) => {
                 return (
-                  <label
-                    key={index}
-                    className="flex cursor-pointer"
-                    htmlFor={avatar}
-                  >
+                  <label key={index} className="flex" htmlFor={avatar.name}>
                     <input
                       name="avatar"
-                      id={avatar}
+                      id={avatar.name}
                       type="radio"
-                      value={avatar}
+                      value={avatar.name}
                       className="appearance-none"
-                      checked={selectedAvatar === avatar}
+                      checked={selectedAvatar === avatar.name}
                       onChange={handleSelectedAvatar}
+                      disabled={avatar.selected}
                     />
-                    <div className="flex items-center justify-center checked:border-2 checked:border-green-600">
+                    <div
+                      className={
+                        avatar.selected
+                          ? 'flex items-center justify-center'
+                          : 'flex items-center justify-center cursor-pointer'
+                      }
+                    >
                       <div
                         className={
-                          selectedAvatar === avatar
+                          selectedAvatar === avatar.name
                             ? 'static w-[15vw] h-[15vw] md:w-[9vw] md:h-[9vw] bg-white rounded-full border-4 border-green-600 ring-4 ring-green-400/80'
-                            : 'static w-[9vw] h-[9vw] bg-white rounded-full border-2 border-black '
+                            : 'static w-[9vw] h-[9vw] bg-white rounded-full border-2 border-black  '
                         }
                       ></div>
                       <Image
-                        src={`/avatars/${avatar}.jpg`}
+                        src={`/avatars/${avatar.name}.jpg`}
                         alt="Player Avatar"
                         width={100}
                         height={100}
-                        className="absolute md:w-[8vw] md:h-[8vw] w-[14vw] h-[14vw] rounded-full overflow-hidden"
+                        className={
+                          avatar.selected
+                            ? 'absolute md:w-[8vw] md:h-[8vw] w-[14vw] h-[14vw] rounded-full overflow-hidden opacity-35'
+                            : 'absolute md:w-[8vw] md:h-[8vw] w-[14vw] h-[14vw] rounded-full overflow-hidden'
+                        }
                       />
                     </div>
                   </label>
@@ -116,7 +152,7 @@ export default function PlayerPage() {
           height={300}
           src="/stars.png"
           alt="stars"
-          className="w-[12vw] absolute ml-[65vw] mt-[30vw]"
+          className="w-[15%] h-[25%] relative ml-[87%] -mt-[15%]"
         />
       </div>
     </div>
