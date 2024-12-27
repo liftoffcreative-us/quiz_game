@@ -14,10 +14,14 @@ export default {
         'answer-bg': '#1a283b',
         'game-red': '#cf1120',
         'game-orange': '#ed8c2b',
-        'game-yellow': '#ffe600',
+        'game-pink': '#fc2aaf',
         'game-blue': '#00b3ff',
         'game-green': '#3eb53e',
         'game-purple': '#862dba',
+        'game-bg': '#06214e',
+      },
+      boxShadow:{
+        'glow': '0 0 30px 10px rgba(0, 0, 0, 0.3)',
       },
       backgroundImage: {
         'question-bg': "url('../app/images/harry-potter.jpg')",
