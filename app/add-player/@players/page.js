@@ -19,10 +19,8 @@ export default function PlayerPage() {
   const [selectedAvatar, setSelectedAvatar] = useState('');
   const [playerName, setPlayerName] = useState('');
   const [disabled, setDisabled] = useState(false);
-  
-  const { players, currentTurn } = usePlayersState();
 
-  
+  const { players, currentTurn } = usePlayersState();
 
   // set avatar choice
   const handleSelectedAvatar = (e) => {
@@ -36,9 +34,9 @@ export default function PlayerPage() {
   };
 
   //submit the form data
-  const handleSubmit = (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(players.length)
+    console.log(players.length);
     dispatch({
       type: 'ADD_USER',
       payload: { name: playerName, avatarName: selectedAvatar },
@@ -47,8 +45,6 @@ export default function PlayerPage() {
     // reset input field after adding player
     setPlayerName('');
     setSelectedAvatar('');
-
-    
   };
 
   return (
@@ -122,14 +118,24 @@ export default function PlayerPage() {
               })}
             </div>
           </div>
-          <div className='flex gap-6 w-full'>
+          <div className="flex gap-6 w-full">
             <button
               type="submit"
               className="max-w-[40%] px-4 py-4 rounded-[1rem] bg-red-700 border-2 border-red-900 text-[2vw]"
             >
               ADD PLAYER
             </button>
-            <Link href="/score-board" alt="Play Game!" className={players.length > 1 ? "max-w-[40%] px-4 py-4 rounded-[1rem] bg-green-700 border-2 border-green-900 text-[2vw]" : "max-w-[40%] px-4 py-4 rounded-[1rem] bg-gray-700 border-2 border-gray-900 text-gray-500 text-[2vw]"} >Play the Game!</Link>
+            <Link
+              href="/score-board"
+              alt="Play Game!"
+              className={
+                players.length > 1
+                  ? 'max-w-[40%] px-4 py-4 rounded-[1rem] bg-green-700 border-2 border-green-900 text-[2vw]'
+                  : 'max-w-[40%] px-4 py-4 rounded-[1rem] bg-gray-700 border-2 border-gray-900 text-gray-500 text-[2vw]'
+              }
+            >
+              Play the Game!
+            </Link>
           </div>
         </Form>
         <Image

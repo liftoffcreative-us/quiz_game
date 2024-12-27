@@ -12,9 +12,10 @@ const Categories = ({ allCategories }) => {
   // print out categories array
   console.log(allCategories);
 
-
   return (
-    <div className={`${playerFont.className} flex flex-col items-center justify-center w-3/4 h-3/4 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-xl`}>
+    <div
+      className={`${playerFont.className} flex flex-col items-center justify-center w-3/4 h-3/4 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-xl`}
+    >
       <h1 className="my-6 text-4xl">CATEGORIES</h1>
       <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full py-4 overflow-y-auto">
         {allCategories.slice(0, 18).map((category, index) => {
