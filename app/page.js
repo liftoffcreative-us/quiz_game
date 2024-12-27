@@ -3,14 +3,12 @@ import { PlayersProvider } from './context/playersContext';
 
 export default function Home() {
   return (
-    <PlayersProvider>
-      <div className="flex items-center justify-center w-screen h-screen ">
-        <Link href="/categories">
-          <button className="flex items-center justify-center w-auto px-6 py-2 bg-game-blue rounded-lg">
-            CATEGORIES
-          </button>
-        </Link>
-      </div>
-    </PlayersProvider>
+    <div className="flex items-center justify-center w-screen h-screen ">
+      <Link href="/categories">
+        <button className="flex items-center justify-center w-auto px-6 py-2 bg-game-blue rounded-lg">
+          CATEGORIES
+        </button>
+      </Link>
+    </div>
   );
 }
