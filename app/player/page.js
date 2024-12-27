@@ -41,7 +41,7 @@ export default function PlayerPage() {
     {
       id: 5,
       name: 'douglass',
-      selected: true,
+      selected: false,
     },
     {
       id: 6,
