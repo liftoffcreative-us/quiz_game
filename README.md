@@ -15,6 +15,7 @@ bun dev
 ```
 
 ### Testing
+
 `npm run lint`
 `npm run format`
 
