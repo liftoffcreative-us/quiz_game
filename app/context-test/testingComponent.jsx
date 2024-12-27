@@ -6,6 +6,7 @@ const TestingComponent = () => {
   const dispatch = usePlayersDispatch();
   const { players, currentTurn } = usePlayersState();
   const [name, setName] = useState('');
+  const [selectedRing, setSelectedRing] = useState(1);
 
   const addUser = () => {
     dispatch({
@@ -15,16 +16,29 @@ const TestingComponent = () => {
     setName(''); // reset input field after adding user
   };
 
-  const addScore = (userId) => {
+  const removePlayer = (playerId) => {
     dispatch({
-      type: 'UPDATE_USER',
-      payload: { id: userId },
+      type: 'REMOVE_PLAYER',
+      payload: { id: playerId },
+    });
+  };
+
+  const addRing = (playerId, ringId) => {
+    dispatch({
+      type: 'ADD_RING',
+      payload: { id: playerId, ringId: ringId },
     });
   };
 
   const nextTurn = () => {
     dispatch({
       type: 'NEXT_TURN',
+    });
+  };
+
+  const resetPlayersState = () => {
+    dispatch({
+      type: 'RESET_STATE',
     });
   };
 
@@ -47,13 +61,12 @@ const TestingComponent = () => {
       >
         Next Turn
       </button>
-
       {Object.entries(players).map(([_key, player]) => (
         <div
           key={player.playerId}
           style={{
             border:
-              player.playerId === currentTurn
+              player.position === currentTurn
                 ? '4px solid red'
                 : '2px solid white',
             padding: '10px',
@@ -61,19 +74,56 @@ const TestingComponent = () => {
           }}
         >
           <h1
-            style={{ color: player.playerId === currentTurn ? 'red' : 'white' }}
+            style={{ color: player.position === currentTurn ? 'red' : 'white' }}
           >
-            {player.name}
+            {player.name} ({player.playerId})
           </h1>
-          <p>{player.score}</p>
-          <button
-            style={{ background: 'white', color: 'black' }}
-            onClick={() => addScore(player.playerId)}
+          <p>Position #{player.position}</p>
+          <p>
+            Rings:
+            {player.rings.map((ring) => (
+              <span
+                key={ring.id}
+                style={{ color: ring.achieved ? 'green' : 'red' }}
+              >
+                {ring.id}
+              </span>
+            ))}
+          </p>
+          <select
+            vaule={selectedRing}
+            onChange={(e) => setSelectedRing(parseInt(e.target.value))}
+            style={{ marginRight: '10px', color: 'black' }}
           >
-            Add Score
+            {[1, 2, 3, 4, 5, 6].map((id) => (
+              <option key={id} value={id} style={{ color: 'black' }}>
+                {id}
+              </option>
+            ))}
+          </select>
+          <button
+            style={{
+              background: 'white',
+              color: 'black',
+            }}
+            onClick={() => addRing(player.playerId, selectedRing)}
+          >
+            Add Ring
+          </button>
+          <button
+            style={{ background: 'white', color: 'black', marginLeft: '30px' }}
+            onClick={() => removePlayer(player.playerId)}
+          >
+            Remove Player
           </button>
         </div>
       ))}
+      <button
+        style={{ background: 'white', color: 'black', marginLeft: '30px' }}
+        onClick={resetPlayersState}
+      >
+        Reset State
+      </button>{' '}
     </div>
   );
 };
