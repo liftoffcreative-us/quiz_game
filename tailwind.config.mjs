@@ -19,6 +19,8 @@ export default {
         'game-green': '#3eb53e',
         'game-purple': '#862dba',
         'game-bg': '#06214e',
+        'grad-lt-blue': '#658ab0',
+        'grad-dk-blue': '#3a5c7e',
       },
       boxShadow: {
         glow: '0 0 30px 10px rgba(0, 0, 0, 0.3)',
