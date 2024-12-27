@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { PlayersProvider } from './context/playersContext';
+import localFont from 'next/font/local';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -10,6 +11,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const playerFont = localFont({
+  src: '/static-fonts/That Sounds Great.otf',
+  display: 'swap',
 });
 
 export const metadata = {

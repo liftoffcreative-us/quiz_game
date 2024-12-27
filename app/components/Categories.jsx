@@ -1,16 +1,22 @@
 import Link from 'next/link';
 import React from 'react';
-
+import localFont from 'next/font/local';
 import Image from 'next/image';
+
+const playerFont = localFont({
+  src: '../static-fonts/That Sounds Great.otf',
+  display: 'swap',
+});
 
 const Categories = ({ allCategories }) => {
   // print out categories array
   console.log(allCategories);
 
+
   return (
-    <div className="flex flex-col items-center justify-center w-3/4 h-3/4 bg-gray-900 rounded-xl">
+    <div className={`${playerFont.className} flex flex-col items-center justify-center w-3/4 h-3/4 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-xl`}>
       <h1 className="my-6 text-4xl">CATEGORIES</h1>
-      <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full overflow-y-auto">
+      <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full py-4 overflow-y-auto">
         {allCategories.slice(0, 18).map((category, index) => {
           const idNum = category.id;
           // Look at the index of the category to determine a color to associate with it (we can pass the "color_name" value to the ring question to determine which ring to mark as "completed").
@@ -41,8 +47,8 @@ const Categories = ({ allCategories }) => {
               colorIds: [4, 10, 16, 22],
             },
             {
-              color_name: 'game-yellow',
-              colorHex: '#ffe600',
+              color_name: 'game-pink',
+              colorHex: '#fc2aaf',
               colorIds: [5, 11, 17, 23],
             },
           ];
@@ -72,9 +78,7 @@ const Categories = ({ allCategories }) => {
               <div
                 style={{ '--colorHex': colorCode }}
                 className={
-                  colorName === 'game-yellow'
-                    ? 'bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-gray-600 text-center'
-                    : 'bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-center'
+                  'bg-[var(--colorHex)] w-full h-[25%] flex items-center justify-center font-bold text-[.7rem] text-center'
                 }
               >
                 {category.name}
