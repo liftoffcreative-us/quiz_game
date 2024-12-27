@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "next/core-web-vitals", // Next.js recommended ESLint rules
+    "plugin:prettier/recommended" // Integrates Prettier with ESLint
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "trailingComma": "es5"
+      }
+    ]
+  }
+}
