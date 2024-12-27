@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useReducer } from 'react';
-import { INIT_RINGS } from '../constants';
+import { INIT_RINGS, PLAYER_COLORS } from '../constants';
 import { reorderPlayers } from '../utils/playersUtils';
 
 // Define initial state
@@ -25,6 +25,7 @@ function playersReducer(state, action) {
           {
             playerId: generateId(),
             name: action.payload.name,
+            color: PLAYER_COLORS[state.players.length].value,
             avatar: `/avatars/${action.payload.avatarName}.jpg`,
             rings: INIT_RINGS,
             score: 0,
