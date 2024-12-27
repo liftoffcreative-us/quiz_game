@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import Categories from '../components/Categories';
 
 export default function CategoriesPage() {
-    const [categories, setCategories] = useState(null);
-    const [isLoading, setLoading] = useState(true);
+  const [categories, setCategories] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/categories')
