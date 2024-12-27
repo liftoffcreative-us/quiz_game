@@ -18,8 +18,6 @@ export default function PlayerPage() {
   const [playerName, setPlayerName] = useState('');
   const [disabled, setDisabled] = useState(false);
 
-  
-
   // set avatar choice
   const handleSelectedAvatar = (e) => {
     setSelectedAvatar(e.target.value);
