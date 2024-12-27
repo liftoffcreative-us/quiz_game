@@ -1,7 +1,5 @@
-
-
 export default function AddPlayers() {
-  return null
+  return null;
   // const dispatch = usePlayersDispatch();
   // const [selectedAvatar, setSelectedAvatar] = useState('');
   // const [playerName, setPlayerName] = useState('');

@@ -26,7 +26,10 @@ export default function ScoreBoardPage() {
           alt="Score Board Banner"
           className="w-3/4 "
         />
-        <div id="players" className="flex items-center flex-col w-5/6 flex-wrap">
+        <div
+          id="players"
+          className="flex items-center flex-col w-5/6 flex-wrap"
+        >
           {players.map((player, index) => {
             return (
               <div
@@ -36,7 +39,7 @@ export default function ScoreBoardPage() {
               >
                 <div
                   style={{ backgroundColor: player.color }}
-                  className='static  w-[100%] h-[70%] rounded-[2rem] border-4 border-black'
+                  className="static  w-[100%] h-[70%] rounded-[2rem] border-4 border-black"
                 ></div>
 
                 <div className="absolute  ml-8 flex flex-col justify-center">

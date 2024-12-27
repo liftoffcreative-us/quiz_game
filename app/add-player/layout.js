@@ -1,5 +1,4 @@
-
-import localFont from "next/font/local";
+import localFont from 'next/font/local';
 
 const playerFont = localFont({
   src: '../static-fonts/That Sounds Great.otf',
@@ -13,17 +12,11 @@ export const metadata = {
 export default function RootLayout({ children, players, scoreboard }) {
   return (
     <div className="flex bg-game-bg w-full h-full overflow-hidden ">
-        
-          {children}
-          <div className='flex '>
-            <div className="w-3/4 h-full ">
-              {players}
-            </div>
-            <div className="w-1/4 h-full">
-            {scoreboard}
-            </div>  
-          </div>
-        
+      {children}
+      <div className="flex ">
+        <div className="w-3/4 h-full ">{players}</div>
+        <div className="w-1/4 h-full">{scoreboard}</div>
+      </div>
     </div>
   );
 }
