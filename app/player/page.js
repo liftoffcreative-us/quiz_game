@@ -2,6 +2,7 @@
 import localFont from 'next/font/local';
 import Form from 'next/form';
 import Image from 'next/image';
+import { usePlayersDispatch } from '../context/playersContext';
 
 import { useState } from 'react';
 
@@ -11,6 +12,7 @@ const playerFont = localFont({
 });
 
 export default function PlayerPage() {
+  const dispatch = usePlayersDispatch();
   const [selectedAvatar, setSelectedAvatar] = useState('');
   const [playerName, setPlayerName] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -67,6 +69,11 @@ export default function PlayerPage() {
   //submit the form data
   const handleSubmit = () => {
     alert('Hello ' + playerName + ' You have selected ' + selectedAvatar);
+    dispatch({
+      type: 'ADD_USER',
+      payload: { name: playerName },
+    });
+    setPlayerName(''); // reset input field after adding user
   };
 
   return (
