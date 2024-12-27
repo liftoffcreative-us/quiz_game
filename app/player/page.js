@@ -71,7 +71,7 @@ export default function PlayerPage() {
 
   return (
     <div
-      className={`${playerFont.className} flex items-center justify-center w-screen h-screen`}
+      className={`${playerFont.className} flex items-center justify-center w-screen h-screen text-white`}
     >
       <div
         id="container"
