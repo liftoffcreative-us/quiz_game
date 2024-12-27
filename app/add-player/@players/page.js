@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import Form from 'next/form';
 import Image from 'next/image';
 import { usePlayersDispatch } from '../../context/playersContext';
+import { AVATARS } from '@/app/constants';
 
 import { useState } from 'react';
 
@@ -17,43 +18,7 @@ export default function PlayerPage() {
   const [playerName, setPlayerName] = useState('');
   const [disabled, setDisabled] = useState(false);
 
-  const avatars = [
-    {
-      id: 1,
-      name: 'cleopatra',
-      selected: false,
-    },
-    {
-      id: 2,
-      name: 'curie',
-      selected: false,
-    },
-    {
-      id: 3,
-      name: 'davinci',
-      selected: false,
-    },
-    {
-      id: 4,
-      name: 'degrasse',
-      selected: false,
-    },
-    {
-      id: 5,
-      name: 'douglass',
-      selected: false,
-    },
-    {
-      id: 6,
-      name: 'einstein',
-      selected: false,
-    },
-    {
-      id: 7,
-      name: 'newton',
-      selected: false,
-    },
-  ];
+  
 
   // set avatar choice
   const handleSelectedAvatar = (e) => {
@@ -106,7 +71,7 @@ export default function PlayerPage() {
           <div className="h-[40vh] flex flex-col gap-4">
             <h2 className="text-[2vw]">Choose an avatar:</h2>
             <div id="avatarOptions" className="flex gap-4 flex-wrap">
-              {avatars.map((avatar, index) => {
+              {AVATARS.map((avatar, index) => {
                 return (
                   <label key={index} className="flex" htmlFor={avatar.name}>
                     <input
