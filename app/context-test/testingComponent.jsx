@@ -79,6 +79,7 @@ const TestingComponent = () => {
             {player.name} ({player.playerId})
           </h1>
           <p>Position #{player.position}</p>
+          <p>Avatar {player.avatar}</p>
           <p>
             Rings:
             {player.rings.map((ring) => (
