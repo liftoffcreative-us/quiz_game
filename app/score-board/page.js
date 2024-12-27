@@ -10,13 +10,8 @@ const playerFont = localFont({
 });
 
 export default function ScoreBoardPage() {
-  //Temporary array for player information (would like a permanent form of this somewhere)
-  const players = mockPlayers;
-
-  const playersState = usePlayersState();
-
-  console.log(`Score board test`);
-  console.log(playersState);
+  // get player and turn info from state
+  const { players, currentTurn } = usePlayersState();
 
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-game-bg ">
@@ -42,7 +37,7 @@ export default function ScoreBoardPage() {
                 <div
                   style={{ backgroundColor: player.color }}
                   className={
-                    player.currentPlayer
+                    player.position === currentTurn
                       ? 'static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black ring-4 ring-green-500 shadow-glow shadow-green-500'
                       : 'static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black'
                   }

@@ -25,6 +25,7 @@ function playersReducer(state, action) {
           {
             playerId: generateId(),
             name: action.payload.name,
+            avatar: `/avatars/${action.payload.avatarName}.jpg`,
             rings: INIT_RINGS,
             score: 0,
             position: state.players.length,
