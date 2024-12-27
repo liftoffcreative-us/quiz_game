@@ -8,6 +8,8 @@ const playerFont = localFont({
 })
 
 export default function ScoreBoardPage() {
+  
+  //Temporary array for player information (would like a permanent form of this somewhere)
   const players = [
     {
       id: 1,
@@ -113,7 +115,7 @@ export default function ScoreBoardPage() {
       currentPlayer: true,
       name: "Player 4",
       color: "#ed8c2b",
-      avatar: "/avatars/einstein.jpg",
+      avatar: "/avatars/newton.jpg",
       rings: [
         {
           id: 1,
@@ -153,6 +155,7 @@ export default function ScoreBoardPage() {
             return(
             <div key={index} id="playerCard" className="flex w-[30.5vw] h-[10vw] mt-2 items-center">
             <div style={{backgroundColor: player.color}} className={player.currentPlayer ? "static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black ring-4 ring-green-500 shadow-glow shadow-green-500" : "static  w-[30.5vw] h-[8vw] rounded-[2rem] border-4 border-black"}></div>
+            
             <div className="absolute  ml-8 flex flex-col">
             <div className={`${playerFont.className} text-[2.2em] justify-self-start -mt-2 `}>{player.name}</div>
             <div id="stars" className="flex w-[15vw] gap-2">
@@ -167,13 +170,14 @@ export default function ScoreBoardPage() {
             </div>
             <div className="absolute flex flex-col items-center justify-center ml-[19vw]">
               <div className="static w-[10vw] h-[10vw] bg-white rounded-full border-2 border-black "></div>
-              <Image src={player.avatar} alt="Player Avatar" width={100} height={100} className="absolute w-[9vw] h-[9vw] bg-black rounded-full overflow-hidden"/>
+              <Image src={player.avatar} alt="Player Avatar" width={100} height={100} className="absolute w-[9vw] h-[9vw]  rounded-full overflow-hidden"/>
             </div>
           </div>
             )
           })}
           
         </div>
+        
       </div>
     </div>
   );
