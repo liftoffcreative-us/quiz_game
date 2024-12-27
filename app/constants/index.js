@@ -34,7 +34,7 @@ export const PLAYER_COLORS = [
   { id: 6, value: '#cf1120' },
 ];
 
-export const avatars = [
+export const AVATARS = [
   {
     id: 1,
     name: 'cleopatra',
