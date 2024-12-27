@@ -2,12 +2,12 @@
 import localFont from 'next/font/local';
 import Form from 'next/form';
 import Image from 'next/image';
-import { usePlayersDispatch } from '../context/playersContext';
+import { usePlayersDispatch } from '../../context/playersContext';
 
 import { useState } from 'react';
 
 const playerFont = localFont({
-  src: '../static-fonts/That Sounds Great.otf',
+  src: '../../static-fonts/That Sounds Great.otf',
   display: 'swap',
 });
 
@@ -67,7 +67,8 @@ export default function PlayerPage() {
   };
 
   //submit the form data
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch({
       type: 'ADD_USER',
       payload: { name: playerName, avatarName: selectedAvatar },
@@ -80,11 +81,11 @@ export default function PlayerPage() {
 
   return (
     <div
-      className={`${playerFont.className} flex items-center justify-center w-screen h-screen text-white`}
+      className={`${playerFont.className} flex items-center justify-center min-w-[75%] w-full h-full text-white`}
     >
       <div
         id="container"
-        className="flex flex-col gap-4 w-5/6 h-5/6 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-[3rem] px-20 py-12 "
+        className="flex flex-col gap-4 w-11/12 h-5/6 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-[3rem] px-20 py-12 "
       >
         <h1 className="text-[3vw] ">Add A Player</h1>
         <Form
@@ -128,8 +129,8 @@ export default function PlayerPage() {
                       <div
                         className={
                           selectedAvatar === avatar.name
-                            ? 'static w-[15vw] h-[15vw] md:w-[9vw] md:h-[9vw] bg-white rounded-full border-4 border-green-600 ring-4 ring-green-400/80'
-                            : 'static w-[9vw] h-[9vw] bg-white rounded-full border-2 border-black  '
+                            ? 'static w-[15vw] h-[15vw] md:w-[7vw] md:h-[7vw] bg-white rounded-full border-4 border-green-600 ring-4 ring-green-400/80'
+                            : 'static w-[7vw] h-[7vw] bg-white rounded-full border-2 border-black  '
                         }
                       ></div>
                       <Image
@@ -139,8 +140,8 @@ export default function PlayerPage() {
                         height={100}
                         className={
                           avatar.selected
-                            ? 'absolute md:w-[8vw] md:h-[8vw] w-[14vw] h-[14vw] rounded-full overflow-hidden opacity-35'
-                            : 'absolute md:w-[8vw] md:h-[8vw] w-[14vw] h-[14vw] rounded-full overflow-hidden'
+                            ? 'absolute md:w-[6vw] md:h-[6vw] w-[14vw] h-[14vw] rounded-full overflow-hidden opacity-35'
+                            : 'absolute md:w-[6vw] md:h-[6vw] w-[14vw] h-[14vw] rounded-full overflow-hidden'
                         }
                       />
                     </div>
@@ -153,7 +154,7 @@ export default function PlayerPage() {
             type="submit"
             className="max-w-[30%] py-4 rounded-[1rem] bg-red-700 border-2 border-red-900 text-[2vw]"
           >
-            SUBMIT
+            ADD PLAYER
           </button>
         </Form>
         <Image
@@ -161,7 +162,7 @@ export default function PlayerPage() {
           height={300}
           src="/stars.png"
           alt="stars"
-          className="w-[15%] h-[25%] relative ml-[87%] -mt-[15%]"
+          className="w-[15%] h-[25%] relative ml-[89%] -mt-[17%]"
         />
       </div>
     </div>
