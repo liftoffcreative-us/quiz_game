@@ -4,8 +4,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Timer from './Timer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-const Questions = () => {
+const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -14,17 +15,21 @@ const Questions = () => {
   const [randomNumber, setRandomNumber] = useState();
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
 
+  // const router = useRouter();
+  // const { categoryId } = router.query;
+  console.log(`categoryId: ${categoryId}`);
+
 
   useEffect(() => {
+    // prevent multiple fetches on renders
     if (!hasFetched.current) {
       hasFetched.current = true;
 
-      fetch('/api/rand-question')
+      fetch(`/api/question/${categoryId}`)
       .then((res) => res.json())
       .then((questionData) => {
         setQuestionData(questionData);
         setLoading(false);
-        // setRandomNumber(Math.random() - 0.5)
         setSortedAnswers(
           questionData.data.answers.sort(() => Math.random() - 0.5)
         );

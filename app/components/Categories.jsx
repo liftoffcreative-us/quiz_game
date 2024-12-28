@@ -66,7 +66,7 @@ const Categories = ({ allCategories }) => {
           return (
             <Link
               key={index}
-              href="/questions"
+              href={`/questions/${idNum.toString()}`}
               className="border border-white flex flex-col items-center justify-center w-1/5 h-1/3 rounded-lg overflow-hidden"
             >
               <Image

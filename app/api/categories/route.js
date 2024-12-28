@@ -3,7 +3,6 @@ import { mockCategories } from '../test-data/mockData';
 
 export async function GET() {
   try {
-    console.log(process.env.USE_TEST_DATA);
     //use mock data
     if (process.env.USE_TEST_DATA == 'TRUE')
       return NextResponse.json(mockCategories);
