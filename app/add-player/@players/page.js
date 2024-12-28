@@ -18,7 +18,7 @@ export default function PlayerPage() {
   const dispatch = usePlayersDispatch();
   const [selectedAvatarId, setSelectedAvatarId] = useState(0);
   const [playerName, setPlayerName] = useState('');
-  // disable avatars based on index defined in AVATARS constant
+  // disable avatars based on index that corresponds to (id - 1) in AVATARS constant
   // ex: selected avatar with id 4 will have index 3 of this array to true
   const [disabledAvatars, setDisabledAvatars] = useState(
     Array(AVATARS.length).fill(false)
