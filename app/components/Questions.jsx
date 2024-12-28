@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Timer from './Timer';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,9 +12,14 @@ const Questions = () => {
   const [selected, setSelected] = useState(null);
   const [sortedAnswers, setSortedAnswers] = useState([]);
   const [randomNumber, setRandomNumber] = useState();
+  const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
+
 
   useEffect(() => {
-    fetch('/api/rand-question')
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+
+      fetch('/api/rand-question')
       .then((res) => res.json())
       .then((questionData) => {
         setQuestionData(questionData);
@@ -24,6 +29,7 @@ const Questions = () => {
           questionData.data.answers.sort(() => Math.random() - 0.5)
         );
       });
+    }
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
@@ -33,7 +39,7 @@ const Questions = () => {
     setQuestionAnswered(true);
     setSelected(index);
   };
-  console.log(questionData.data.question);
+  // console.log(questionData.data.question);
 
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
