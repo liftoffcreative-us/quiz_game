@@ -23,7 +23,7 @@ export default function PlayerPage() {
   const [disabledAvatars, setDisabledAvatars] = useState(
     Array(AVATARS.length).fill(false)
   );
-  const { players, currentTurn } = usePlayersState(););
+  const { players, currentTurn } = usePlayersState();
 
   // set avatar choice
   const handleSelectedAvatar = (e) => {
