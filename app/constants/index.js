@@ -38,36 +38,29 @@ export const AVATARS = [
   {
     id: 1,
     name: 'cleopatra',
-    selected: false,
   },
   {
     id: 2,
     name: 'curie',
-    selected: false,
   },
   {
     id: 3,
     name: 'davinci',
-    selected: false,
   },
   {
     id: 4,
     name: 'degrasse',
-    selected: false,
   },
   {
     id: 5,
     name: 'douglass',
-    selected: false,
   },
   {
     id: 6,
     name: 'einstein',
-    selected: false,
   },
   {
     id: 7,
     name: 'newton',
-    selected: false,
   },
 ];

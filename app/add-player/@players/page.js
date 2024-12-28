@@ -14,14 +14,17 @@ const playerFont = localFont({
 
 export default function PlayerPage() {
   const dispatch = usePlayersDispatch();
-  const [selectedAvatar, setSelectedAvatar] = useState('');
+  const [selectedAvatarId, setSelectedAvatarId] = useState(0);
   const [playerName, setPlayerName] = useState('');
-  const [disabled, setDisabled] = useState(false);
+  // disable avatars based on index defined in AVATARS constant
+  // ex: selected avatar with id 4 will have index 3 of this array to true
+  const [disabledAvatars, setDisabledAvatars] = useState(
+    Array(AVATARS.length).fill(false)
+  );
 
   // set avatar choice
   const handleSelectedAvatar = (e) => {
-    setSelectedAvatar(e.target.value);
-    console.log(e.target.value);
+    setSelectedAvatarId(parseInt(e.target.value));
   };
 
   // set player name value
@@ -32,14 +35,25 @@ export default function PlayerPage() {
   //submit the form data
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch({
       type: 'ADD_USER',
-      payload: { name: playerName, avatarName: selectedAvatar },
+      payload: {
+        name: playerName,
+        avatarName: AVATARS.find((avatar) => avatar.id === selectedAvatarId)
+          .name,
+      },
     });
+
+    // disable selected avatar with temp array
+    const tmpVar = disabledAvatars;
+    tmpVar[selectedAvatarId - 1] = true;
+
+    setDisabledAvatars(tmpVar);
 
     // reset input field after adding player
     setPlayerName('');
-    setSelectedAvatar('');
+    setSelectedAvatarId(0);
   };
 
   return (
@@ -70,28 +84,29 @@ export default function PlayerPage() {
             <h2 className="text-[2vw]">Choose an avatar:</h2>
             <div id="avatarOptions" className="flex gap-4 flex-wrap">
               {AVATARS.map((avatar, index) => {
+                const isDisabledAvatar = disabledAvatars[avatar.id - 1]; // get disabled status of avatar
                 return (
-                  <label key={index} className="flex" htmlFor={avatar.name}>
+                  <label key={index} className="flex" htmlFor={avatar.id}>
                     <input
                       name="avatar"
-                      id={avatar.name}
+                      id={avatar.id}
                       type="radio"
-                      value={avatar.name}
+                      value={avatar.id}
                       className="appearance-none"
-                      checked={selectedAvatar === avatar.name}
+                      checked={selectedAvatarId === avatar.id}
                       onChange={handleSelectedAvatar}
-                      disabled={avatar.selected}
+                      disabled={isDisabledAvatar}
                     />
                     <div
                       className={
-                        avatar.selected
+                        isDisabledAvatar
                           ? 'flex items-center justify-center'
                           : 'flex items-center justify-center cursor-pointer'
                       }
                     >
                       <div
                         className={
-                          selectedAvatar === avatar.name
+                          selectedAvatarId === avatar.id
                             ? 'static w-[15vw] h-[15vw] md:w-[7vw] md:h-[7vw] bg-white rounded-full border-4 border-green-600 ring-4 ring-green-400/80'
                             : 'static w-[7vw] h-[7vw] bg-white rounded-full border-2 border-black  '
                         }
@@ -102,7 +117,7 @@ export default function PlayerPage() {
                         width={100}
                         height={100}
                         className={
-                          avatar.selected
+                          isDisabledAvatar
                             ? 'absolute md:w-[6vw] md:h-[6vw] w-[14vw] h-[14vw] rounded-full overflow-hidden opacity-35'
                             : 'absolute md:w-[6vw] md:h-[6vw] w-[14vw] h-[14vw] rounded-full overflow-hidden'
                         }
