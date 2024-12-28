@@ -28,7 +28,7 @@ export default function ScoreBoardPage() {
         />
         <div
           id="players"
-          className="flex items-center flex-col w-5/6 flex-wrap"
+          className="flex items-center flex-col w-full "
         >
           {players.map((player, index) => {
             return (
@@ -123,7 +123,7 @@ export default function ScoreBoardPage() {
                     </svg>
                   </div>
                 </div>
-                <div className="absolute flex flex-col items-center justify-center ml-[11vw] ">
+                <div className="absolute flex flex-col items-center justify-center ml-[13vw] ">
                   <div className="static w-[5vw] h-[5vw] bg-white rounded-full border-2 border-black "></div>
                   <Image
                     src={player.avatar}
