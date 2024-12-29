@@ -4,19 +4,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import Timer from './Timer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
-  const [sortedAnswers, setSortedAnswers] = useState([]);
-  const [randomNumber, setRandomNumber] = useState();
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
 
-  // const router = useRouter();
-  // const { categoryId } = router.query;
+
   console.log(`categoryId: ${categoryId}`);
 
 
@@ -30,9 +26,6 @@ const Questions = ({ categoryId }) => {
       .then((questionData) => {
         setQuestionData(questionData);
         setLoading(false);
-        setSortedAnswers(
-          questionData.data.answers.sort(() => Math.random() - 0.5)
-        );
       });
     }
   }, []);
@@ -44,7 +37,7 @@ const Questions = ({ categoryId }) => {
     setQuestionAnswered(true);
     setSelected(index);
   };
-  // console.log(questionData.data.question);
+  console.log(`Correct Answer Index: ${questionData.data.correctAnswerIndex}`);
 
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
@@ -84,7 +77,7 @@ const Questions = ({ categoryId }) => {
             {questionData.data.question}
           </div>
           <div className="flex flex-wrap w-full h-2/3 gap-4">
-            {sortedAnswers.map((answer, index) => {
+            {questionData.data.answers.map((answer, index) => {
               const letter = ['A', 'B', 'C', 'D'];
               return (
                 <button
