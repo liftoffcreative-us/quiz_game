@@ -14,10 +14,10 @@ const Categories = ({ allCategories }) => {
 
   return (
     <div
-      className={`${playerFont.className} flex flex-col items-center justify-center w-3/4 h-3/4 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-xl`}
+      className={`${playerFont.className} flex flex-col items-center justify-center w-[90%] h-[90%] bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-xl`}
     >
       <h1 className="my-6 text-4xl">CATEGORIES</h1>
-      <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full py-4 overflow-y-auto">
+      <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full py-4 overflow-y-auto no-scrollbar">
         {allCategories.slice(0, 18).map((category, index) => {
           const idNum = category.id;
           // Look at the index of the category to determine a color to associate with it (we can pass the "color_name" value to the ring question to determine which ring to mark as "completed").
