@@ -4,7 +4,7 @@ import { formatQuestionData } from '@/app/utils/apiUtils';
 
 // Handle the GET request
 export async function GET(req, { params }) {
-    const categoryId = (await params).categoryId;
+  const categoryId = (await params).categoryId;
   try {
     // use mock data if enabled
     if (process.env.USE_TEST_DATA == 'TRUE')

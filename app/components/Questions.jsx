@@ -12,9 +12,7 @@ const Questions = ({ categoryId }) => {
   const [selected, setSelected] = useState(null);
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
 
-
   console.log(`categoryId: ${categoryId}`);
-
 
   useEffect(() => {
     // prevent multiple fetches on renders
@@ -22,11 +20,11 @@ const Questions = ({ categoryId }) => {
       hasFetched.current = true;
 
       fetch(`/api/question/${categoryId}`)
-      .then((res) => res.json())
-      .then((questionData) => {
-        setQuestionData(questionData);
-        setLoading(false);
-      });
+        .then((res) => res.json())
+        .then((questionData) => {
+          setQuestionData(questionData);
+          setLoading(false);
+        });
     }
   }, []);
 
