@@ -34,6 +34,33 @@ export const PLAYER_COLORS = [
   { id: 6, value: '#cf1120' },
 ];
 
+export const CATEGORY_COLORS = [
+  {
+    color_name: 'game-purple',
+    colorHex: '#862dba',
+  },
+  {
+    color_name: 'game-blue',
+    colorHex: '#00b3ff',
+  },
+  {
+    color_name: 'game-red',
+    colorHex: '#cf1120',
+  },
+  {
+    color_name: 'game-orange',
+    colorHex: '#ed8c2b',
+  },
+  {
+    color_name: 'game-green',
+    colorHex: '#3eb53e',
+  },
+  {
+    color_name: 'game-pink',
+    colorHex: '#fc2aaf',
+  },
+];
+
 export const AVATARS = [
   {
     id: 1,
