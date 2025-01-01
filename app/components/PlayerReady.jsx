@@ -3,6 +3,7 @@ import React from 'react'
 import localFont from 'next/font/local';
 import Image from 'next/image';
 import { usePlayersState } from '../context/playersContext';
+import Link from 'next/link';
 
 const playerFont = localFont({
   src: '../static-fonts/That Sounds Great.otf',
