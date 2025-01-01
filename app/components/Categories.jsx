@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import localFont from 'next/font/local';
 import Image from 'next/image';
+import { CATEGORY_COLORS } from '../constants';
 
 const playerFont = localFont({
   src: '../static-fonts/That Sounds Great.otf',
@@ -20,48 +21,14 @@ const Categories = ({ allCategories }) => {
       <div className="flex justify-center items-start flex-wrap gap-6 w-[100%] h-full py-4 overflow-y-auto no-scrollbar">
         {allCategories.slice(0, 18).map((category, index) => {
           const idNum = category.id;
-          // Look at the index of the category to determine a color to associate with it (we can pass the "color_name" value to the ring question to determine which ring to mark as "completed").
-          const colors = [
-            {
-              color_name: 'game-purple',
-              colorHex: '#862dba',
-              colorIds: [0, 6, 12, 18],
-            },
-            {
-              color_name: 'game-blue',
-              colorHex: '#00b3ff',
-              colorIds: [1, 7, 13, 19],
-            },
-            {
-              color_name: 'game-red',
-              colorHex: '#cf1120',
-              colorIds: [2, 8, 14, 20],
-            },
-            {
-              color_name: 'game-orange',
-              colorHex: '#ed8c2b',
-              colorIds: [3, 9, 15, 21],
-            },
-            {
-              color_name: 'game-green',
-              colorHex: '#3eb53e',
-              colorIds: [4, 10, 16, 22],
-            },
-            {
-              color_name: 'game-pink',
-              colorHex: '#fc2aaf',
-              colorIds: [5, 11, 17, 23],
-            },
-          ];
 
-          //filter the color array to match the index of the category
-          const setColor = colors.filter((color) =>
-            color.colorIds.includes(index)
-          );
+          // get color value from the array
+          const catColor = CATEGORY_COLORS[index % CATEGORY_COLORS.length];
+
           //pull the color value from the array
-          const colorCode = setColor[0].colorHex;
+          const colorCode = catColor.colorHex;
           //set the color name
-          const colorName = setColor[0].color_name;
+          const _colorName = catColor.color_name;
 
           return (
             <Link
