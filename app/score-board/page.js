@@ -3,6 +3,8 @@ import Image from 'next/image';
 import localFont from 'next/font/local';
 import { mockPlayers } from './mockPlayers';
 import { usePlayersState } from '../context/playersContext';
+import PlayerReady from '../components/PlayerReady';
+import { useEffect, useState } from 'react';
 
 const playerFont = localFont({
   src: '../static-fonts/That Sounds Great.otf',
@@ -12,12 +14,18 @@ const playerFont = localFont({
 export default function ScoreBoardPage() {
   // get player and turn info from state
   const { players, currentTurn } = usePlayersState();
+  const [playerReady, setPlayerReady] = useState(false);
 
+  const getReady = () => {
+    setPlayerReady(true);
+  };
+  setTimeout(getReady, 5000);
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-game-bg ">
+      {playerReady ? <PlayerReady className="fixed " /> : null}
       <div
         id="scoreBoard"
-        className="w-full h-full  flex items-center justify-start p-12 flex-col flex-wrap gap-6"
+        className="w-full h-full flex items-center justify-start p-12 flex-col flex-wrap gap-6"
       >
         <Image
           src="/scoreBoardBanner.png"

@@ -26,10 +26,7 @@ export default function ScoreBoardPage() {
           alt="Score Board Banner"
           className="w-3/4 "
         />
-        <div
-          id="players"
-          className="flex items-center flex-col w-full "
-        >
+        <div id="players" className="flex items-center flex-col w-full ">
           {players.map((player, index) => {
             return (
               <div
