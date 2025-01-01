@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Timer from './Timer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
@@ -11,6 +12,7 @@ const Questions = ({ categoryId }) => {
   const [isLoading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
+  const dispatch = usePlayersDispatch();
 
   console.log(`categoryId: ${categoryId}`);
 
@@ -36,14 +38,20 @@ const Questions = ({ categoryId }) => {
     setSelected(index);
   };
   console.log(`Correct Answer Index: ${questionData.data.correctAnswerIndex}`);
-
+  
+  const nextTurn = () => {
+    dispatch({
+      type: 'NEXT_TURN',
+    });
+  };
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
       <Link
-        href="/categories"
+        href="/score-board"
         id="timesUp"
         className="fixed z-50  h-full w-full flex items-center justify-center"
         style={{ visibility: 'hidden' }}
+        onClick={nextTurn}
       >
         <div className="static w-screen h-screen bg-black opacity-80"></div>
         <div className="absolute w-1/2 h-1/2 bg-times-up-bg bg-contain bg-no-repeat "></div>
