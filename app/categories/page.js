@@ -55,7 +55,11 @@ export default function CategoriesPage() {
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        modalHeaderText="Choose your category"
+      >
         <div className="flex justify-center items-start flex-wrap gap-6 py-4 w-full h-full overflow-y-auto no-scrollbar">
           {categories
             .filter((category) => category.color == selectedColorGroupHex)

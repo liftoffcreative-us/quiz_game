@@ -6,14 +6,14 @@ const digitalFont = localFont({
   src: '../static-fonts/Digital Dismay.otf',
   display: 'swap',
 });
-const Timer = ({ questionAnswered }) => {
+const Timer = ({ stopTimer }) => {
   const initialTime = 30;
   const [timeRemaining, setTimeRemaining] = useState(initialTime);
 
   // Handle timer countdown
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      if (questionAnswered == false) {
+      if (stopTimer == false) {
         setTimeRemaining((prevTime) => {
           const timesUp = document.getElementById('timesUp');
           if (prevTime === 0) {
@@ -30,7 +30,7 @@ const Timer = ({ questionAnswered }) => {
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, [questionAnswered]);
+  }, [stopTimer]);
 
   return (
     <div className={digitalFont.className}>

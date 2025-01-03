@@ -5,14 +5,18 @@ import Timer from './Timer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
+import Modal from './Modal';
+import { useRouter } from 'next/navigation';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
-  const [questionAnswered, setQuestionAnswered] = useState(false);
+  const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const [isLoading, setLoading] = useState(true);
-  const [selected, setSelected] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
   const dispatch = usePlayersDispatch();
+  const router = useRouter();
+  const [isCorrect, setIsCorrect] = useState(false);
 
   useEffect(() => {
     // prevent multiple fetches on renders
@@ -31,10 +35,6 @@ const Questions = ({ categoryId }) => {
   if (isLoading) return <p>Loading...</p>;
   if (!questionData) return <p>No profile data</p>;
 
-  const answerChoice = (index) => {
-    setQuestionAnswered(true);
-    setSelected(index);
-  };
   console.log(`Correct Answer Index: ${questionData.data.correctAnswerIndex}`);
 
   const nextTurn = () => {
@@ -54,6 +54,26 @@ const Questions = ({ categoryId }) => {
         <div className="static w-screen h-screen bg-black opacity-80"></div>
         <div className="absolute w-1/2 h-1/2 bg-times-up-bg bg-contain bg-no-repeat "></div>
       </Link>
+      <Modal
+        isOpen={answerSubmitted}
+        onClose={() => setAnswerSubmitted(false)}
+        modalHeaderText="Results"
+      >
+        <div className="text-2xl font-bold text-black">
+          {isCorrect
+            ? 'Correct!'
+            : `Incorrect! The correct answer was ${questionData.data.answers[questionData.data.correctAnswerIndex]}`}
+          <button
+            className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            onClick={() => {
+              !isCorrect && nextTurn(); // if the answer is incorrect, next players turn
+              router.push('/score-board');
+            }}
+          >
+            Contiue
+          </button>
+        </div>
+      </Modal>
       <section
         id="topSection"
         className="flex items-center w-full h-1/2  overflow-hidden"
@@ -71,7 +91,7 @@ const Questions = ({ categoryId }) => {
           id="timerSection"
           className="flex flex-col items-center justify-center w-1/4 h-full "
         >
-          <Timer questionAnswered={questionAnswered} />
+          <Timer stopTimer={answerSubmitted} />
         </div>
         <div
           id="questionSection"
@@ -88,11 +108,11 @@ const Questions = ({ categoryId }) => {
                   key={index}
                   id={index}
                   className={
-                    selected === index
+                    selectedAnswer === index
                       ? ' flex items-center overflow-hidden  w-[45%] h-[40%] mr-2 text-xl bg-answer-bg rounded-md border-2  border-game-green'
                       : ' flex items-center overflow-hidden  w-[45%] h-[40%] mr-2 text-xl bg-answer-bg rounded-md'
                   }
-                  onClick={() => answerChoice(index)}
+                  onClick={() => setSelectedAnswer(index)}
                 >
                   <div
                     id="letter"
@@ -104,6 +124,20 @@ const Questions = ({ categoryId }) => {
                 </button>
               );
             })}
+            <div className="flex justify-center w-full mt-4">
+              <button
+                className={`bg-blue-500 text-white font-bold py-2 px-4 rounded ${selectedAnswer === null ? 'opacity-50 cursor-not-allowed' : ''}`}
+                onClick={() => {
+                  setAnswerSubmitted(true);
+                  setIsCorrect(
+                    selectedAnswer === questionData.data.correctAnswerIndex
+                  );
+                }}
+                disabled={selectedAnswer === null}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </section>
