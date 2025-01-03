@@ -62,7 +62,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[0].achieved
+                        player.stars[0].achieved
                           ? 'fill-game-purple stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
@@ -74,7 +74,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[1].achieved
+                        player.stars[1].achieved
                           ? 'fill-game-blue stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
@@ -86,7 +86,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[2].achieved
+                        player.stars[2].achieved
                           ? 'fill-game-red stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
@@ -98,7 +98,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[3].achieved
+                        player.stars[3].achieved
                           ? 'fill-game-orange stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
@@ -110,7 +110,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[4].achieved
+                        player.stars[4].achieved
                           ? 'fill-game-pink stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
@@ -122,7 +122,7 @@ export default function ScoreBoardPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 116.3 111.19"
                       className={
-                        player.rings[5].achieved
+                        player.stars[5].achieved
                           ? 'fill-game-green stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
