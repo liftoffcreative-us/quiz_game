@@ -1,4 +1,4 @@
-export const INIT_RINGS = [
+export const INIT_STARS = [
   {
     id: 1,
     achieved: false,

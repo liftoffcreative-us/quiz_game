@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useReducer } from 'react';
-import { INIT_RINGS, PLAYER_COLORS } from '../constants';
+import { INIT_STARS, PLAYER_COLORS } from '../constants';
 import { reorderPlayers } from '../utils/playersUtils';
 
 // Define initial state
@@ -27,26 +27,29 @@ function playersReducer(state, action) {
             name: action.payload.name,
             color: PLAYER_COLORS[state.players.length].value,
             avatar: `/avatars/${action.payload.avatarName}.jpg`,
-            rings: INIT_RINGS,
+            stars: INIT_STARS,
             score: 0,
             position: state.players.length,
           },
         ],
       };
-    case 'ADD_RING':
-      const updatedPlayersWithRing = state.players.map((player) =>
+    case 'ADD_STAR':
+      const updatedPlayersWithStar = state.players.map((player) =>
         player.playerId === action.payload.id
           ? {
               ...player,
-              rings: player.rings.map((ring) =>
-                ring.id === action.payload.ringId
-                  ? { ...ring, achieved: true }
-                  : ring
+              stars: player.stars.map((star) =>
+                star.id === action.payload.starId
+                  ? { ...star, achieved: true }
+                  : star
               ),
             }
           : player
       );
-      return { ...state, players: updatedPlayersWithRing };
+      return { ...state, players: updatedPlayersWithStar };
+    case 'CURRENT_PLAYER_ADD_STAR':
+      const currentPlayer = state.players[state.currentTurn];
+      console.log(`Current player: ${currentPlayer.name}`);
     case 'REMOVE_PLAYER':
       const rest = state.players.filter(
         (player) => player.playerId !== action.payload.id

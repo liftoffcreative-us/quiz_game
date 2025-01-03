@@ -6,7 +6,7 @@ const TestingComponent = () => {
   const dispatch = usePlayersDispatch();
   const { players, currentTurn } = usePlayersState();
   const [name, setName] = useState('');
-  const [selectedRing, setSelectedRing] = useState(1);
+  const [selectedStar, setSelectedStar] = useState(1);
 
   const addUser = () => {
     dispatch({
@@ -23,11 +23,12 @@ const TestingComponent = () => {
     });
   };
 
-  const addRing = (playerId, ringId) => {
+  const addStar = (playerId, starId) => {
     dispatch({
-      type: 'ADD_RING',
-      payload: { id: playerId, ringId: ringId },
+      type: 'ADD_STAR',
+      payload: { id: playerId, starId: starId },
     });
+    setSelectedStar(1); // reset selected star after adding star
   };
 
   const nextTurn = () => {
@@ -81,19 +82,19 @@ const TestingComponent = () => {
           <p>Position #{player.position}</p>
           <p>Avatar {player.avatar}</p>
           <p>
-            Rings:
-            {player.rings.map((ring) => (
+            Stars:
+            {player.stars.map((star) => (
               <span
-                key={ring.id}
-                style={{ color: ring.achieved ? 'green' : 'red' }}
+                key={star.id}
+                style={{ color: star.achieved ? 'green' : 'red' }}
               >
-                {ring.id}
+                {star.id}
               </span>
             ))}
           </p>
           <select
-            vaule={selectedRing}
-            onChange={(e) => setSelectedRing(parseInt(e.target.value))}
+            vaule={selectedStar}
+            onChange={(e) => setSelectedStar(parseInt(e.target.value))}
             style={{ marginRight: '10px', color: 'black' }}
           >
             {[1, 2, 3, 4, 5, 6].map((id) => (
@@ -107,9 +108,9 @@ const TestingComponent = () => {
               background: 'white',
               color: 'black',
             }}
-            onClick={() => addRing(player.playerId, selectedRing)}
+            onClick={() => addStar(player.playerId, selectedStar)}
           >
-            Add Ring
+            Add Star
           </button>
           <button
             style={{ background: 'white', color: 'black', marginLeft: '30px' }}
