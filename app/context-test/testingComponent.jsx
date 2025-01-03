@@ -43,6 +43,29 @@ const TestingComponent = () => {
     });
   };
 
+  const currentPlayerAddStar = (starId) => {
+    dispatch({
+      type: 'CURRENT_PLAYER_ADD_STAR',
+      payload: { starId: starId },
+    });
+  };
+
+  const starSelector = () => {
+    return (
+      <select
+        vaule={selectedStar}
+        onChange={(e) => setSelectedStar(parseInt(e.target.value))}
+        style={{ marginRight: '10px', color: 'black' }}
+      >
+        {[1, 2, 3, 4, 5, 6].map((id) => (
+          <option key={id} value={id} style={{ color: 'black' }}>
+            {id}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
   return (
     <div>
       <input
@@ -58,13 +81,31 @@ const TestingComponent = () => {
       <p>Current Turn {currentTurn}</p>
       <button
         onClick={nextTurn}
-        style={{ background: 'white', color: 'black', marginBottom: '20px' }}
+        style={{
+          background: 'white',
+          color: 'black',
+          marginBottom: '20px',
+          marginRight: '20px',
+        }}
       >
         Next Turn
       </button>
+      <br />
+      {starSelector()}
+      <button
+        onClick={() => currentPlayerAddStar(selectedStar)}
+        style={{
+          background: 'white',
+          color: 'black',
+          marginBottom: '20px',
+          marginLeft: '20px',
+        }}
+      >
+        Add Star to Current Player
+      </button>
       {Object.entries(players).map(([_key, player]) => (
         <div
-          key={player.playerId}
+          key={player.id}
           style={{
             border:
               player.position === currentTurn
@@ -77,7 +118,7 @@ const TestingComponent = () => {
           <h1
             style={{ color: player.position === currentTurn ? 'red' : 'white' }}
           >
-            {player.name} ({player.playerId})
+            {player.name} ({player.id})
           </h1>
           <p>Position #{player.position}</p>
           <p>Avatar {player.avatar}</p>
@@ -92,29 +133,19 @@ const TestingComponent = () => {
               </span>
             ))}
           </p>
-          <select
-            vaule={selectedStar}
-            onChange={(e) => setSelectedStar(parseInt(e.target.value))}
-            style={{ marginRight: '10px', color: 'black' }}
-          >
-            {[1, 2, 3, 4, 5, 6].map((id) => (
-              <option key={id} value={id} style={{ color: 'black' }}>
-                {id}
-              </option>
-            ))}
-          </select>
+          {starSelector()}
           <button
             style={{
               background: 'white',
               color: 'black',
             }}
-            onClick={() => addStar(player.playerId, selectedStar)}
+            onClick={() => addStar(player.id, selectedStar)}
           >
             Add Star
           </button>
           <button
             style={{ background: 'white', color: 'black', marginLeft: '30px' }}
-            onClick={() => removePlayer(player.playerId)}
+            onClick={() => removePlayer(player.id)}
           >
             Remove Player
           </button>

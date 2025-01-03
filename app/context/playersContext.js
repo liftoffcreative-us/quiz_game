@@ -11,6 +11,22 @@ const initialState = {
 
 let generateId;
 
+// returns new players[] with seletect player star added
+const addStartToPlayerInPlayers = ({ playerId = null, starId, state }) => {
+  return state.players.map((player, index) => {
+    if (playerId ? player.id === playerId : index === state.currentTurn) {
+      return {
+        ...player,
+        stars: player.stars.map((star) =>
+          star.id === starId ? { ...star, achieved: true } : star
+        ),
+      };
+    } else {
+      return player;
+    }
+  });
+};
+
 // Reducer
 function playersReducer(state, action) {
   switch (action.type) {
@@ -23,7 +39,7 @@ function playersReducer(state, action) {
         players: [
           ...state.players,
           {
-            playerId: generateId(),
+            id: generateId(),
             name: action.payload.name,
             color: PLAYER_COLORS[state.players.length].value,
             avatar: `/avatars/${action.payload.avatarName}.jpg`,
@@ -34,25 +50,25 @@ function playersReducer(state, action) {
         ],
       };
     case 'ADD_STAR':
-      const updatedPlayersWithStar = state.players.map((player) =>
-        player.playerId === action.payload.id
-          ? {
-              ...player,
-              stars: player.stars.map((star) =>
-                star.id === action.payload.starId
-                  ? { ...star, achieved: true }
-                  : star
-              ),
-            }
-          : player
-      );
-      return { ...state, players: updatedPlayersWithStar };
+      return {
+        ...state,
+        players: addStartToPlayerInPlayers({
+          playerId: action.payload.id,
+          starId: action.payload.starId,
+          state,
+        }),
+      };
     case 'CURRENT_PLAYER_ADD_STAR':
-      const currentPlayer = state.players[state.currentTurn];
-      console.log(`Current player: ${currentPlayer.name}`);
+      return {
+        ...state,
+        players: addStartToPlayerInPlayers({
+          starId: action.payload.starId,
+          state,
+        }),
+      };
     case 'REMOVE_PLAYER':
       const rest = state.players.filter(
-        (player) => player.playerId !== action.payload.id
+        (player) => player.id !== action.payload.id
       );
       // return rest of players and reassign positions
       return { ...state, players: reorderPlayers(rest) };
