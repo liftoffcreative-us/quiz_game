@@ -7,7 +7,7 @@ const playerFont = localFont({
   display: 'swap',
 });
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, modalHeaderText, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         </button>
         <div className="flex flex-col items-center justify-center p-6 w-full h-full">
           <h2 className={`${playerFont.className} text-[2rem]`}>
-            Choose Your Category
+            {modalHeaderText}
           </h2>
           {children}
         </div>
