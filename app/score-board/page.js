@@ -19,7 +19,7 @@ export default function ScoreBoardPage() {
   const getReady = () => {
     setPlayerReady(true);
   };
-  setTimeout(getReady, 5000);
+  setTimeout(getReady, 3000);
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-game-bg ">
       {playerReady ? <PlayerReady className="fixed " /> : null}
