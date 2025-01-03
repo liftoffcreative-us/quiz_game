@@ -6,10 +6,11 @@ const digitalFont = localFont({
   src: '../static-fonts/Digital Dismay.otf',
   display: 'swap',
 });
-const Timer = ({ questionAnswered }) => {
-  const initialTime = 30;
-  const [timeRemaining, setTimeRemaining] = useState(initialTime);
-
+const Timer = ({ questionAnswered, correctAnswers}) => {
+  // const initialTime = 30;
+  const [time, setTime] = useState([30,25,20,15,10])  //sets the starting amount of time based 
+  const [timeRemaining, setTimeRemaining] = useState(time[correctAnswers]);
+  
   // Handle timer countdown
   useEffect(() => {
     const timerInterval = setInterval(() => {

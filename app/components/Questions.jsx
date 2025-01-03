@@ -13,6 +13,7 @@ const Questions = ({ categoryId }) => {
   const [selected, setSelected] = useState(null);
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
   const dispatch = usePlayersDispatch();
+  const [correctAnswers, setCorrectAnswers] = useState(0) //variable to track the number of correct answers in a row (effects amount of time on timer)
 
   useEffect(() => {
     // prevent multiple fetches on renders
@@ -71,7 +72,7 @@ const Questions = ({ categoryId }) => {
           id="timerSection"
           className="flex flex-col items-center justify-center w-1/4 h-full "
         >
-          <Timer questionAnswered={questionAnswered} />
+          <Timer questionAnswered={questionAnswered} correctAnswers={correctAnswers} />
         </div>
         <div
           id="questionSection"
