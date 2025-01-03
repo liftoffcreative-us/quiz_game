@@ -1,7 +1,10 @@
 'use client';
 import { createContext, useContext, useEffect, useReducer } from 'react';
-import { INIT_RINGS, PLAYER_COLORS } from '../constants';
-import { reorderPlayers } from '../utils/playersUtils';
+import { INIT_STARS, PLAYER_COLORS } from '../constants';
+import {
+  reorderPlayers,
+  addStarToPlayerInPlayers,
+} from '../utils/playersUtils';
 
 // Define initial state
 const initialState = {
@@ -23,33 +26,36 @@ function playersReducer(state, action) {
         players: [
           ...state.players,
           {
-            playerId: generateId(),
+            id: generateId(),
             name: action.payload.name,
             color: PLAYER_COLORS[state.players.length].value,
             avatar: `/avatars/${action.payload.avatarName}.jpg`,
-            rings: INIT_RINGS,
+            stars: INIT_STARS,
             score: 0,
             position: state.players.length,
           },
         ],
       };
-    case 'ADD_RING':
-      const updatedPlayersWithRing = state.players.map((player) =>
-        player.playerId === action.payload.id
-          ? {
-              ...player,
-              rings: player.rings.map((ring) =>
-                ring.id === action.payload.ringId
-                  ? { ...ring, achieved: true }
-                  : ring
-              ),
-            }
-          : player
-      );
-      return { ...state, players: updatedPlayersWithRing };
+    case 'ADD_STAR':
+      return {
+        ...state,
+        players: addStarToPlayerInPlayers({
+          playerId: action.payload.id,
+          starId: action.payload.starId,
+          state,
+        }),
+      };
+    case 'CURRENT_PLAYER_ADD_STAR':
+      return {
+        ...state,
+        players: addStarToPlayerInPlayers({
+          starId: action.payload.starId,
+          state,
+        }),
+      };
     case 'REMOVE_PLAYER':
       const rest = state.players.filter(
-        (player) => player.playerId !== action.payload.id
+        (player) => player.id !== action.payload.id
       );
       // return rest of players and reassign positions
       return { ...state, players: reorderPlayers(rest) };

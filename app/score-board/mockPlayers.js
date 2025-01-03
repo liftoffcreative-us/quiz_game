@@ -5,7 +5,7 @@ export const mockPlayers = [
     name: 'Player 1',
     color: '#862dba',
     avatar: '/avatars/davinci.jpg',
-    rings: [
+    stars: [
       {
         id: 1,
         achieved: true,
@@ -38,7 +38,7 @@ export const mockPlayers = [
     name: 'Player 2',
     color: '#00b3ff',
     avatar: '/avatars/degrasse.jpg',
-    rings: [
+    stars: [
       {
         id: 1,
         achieved: false,
@@ -71,7 +71,7 @@ export const mockPlayers = [
     name: 'Player 3',
     color: '#cf1120',
     avatar: '/avatars/curie.jpg',
-    rings: [
+    stars: [
       {
         id: 1,
         achieved: false,
@@ -104,7 +104,7 @@ export const mockPlayers = [
     name: 'Player 4',
     color: '#ed8c2b',
     avatar: '/avatars/newton.jpg',
-    rings: [
+    stars: [
       {
         id: 1,
         achieved: false,

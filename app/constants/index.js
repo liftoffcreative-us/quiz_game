@@ -1,4 +1,4 @@
-export const INIT_RINGS = [
+export const INIT_STARS = [
   {
     id: 1,
     achieved: false,
@@ -32,6 +32,33 @@ export const PLAYER_COLORS = [
   { id: 4, value: '#fc2aaf' },
   { id: 5, value: '#3eb53e' },
   { id: 6, value: '#cf1120' },
+];
+
+export const CATEGORY_COLORS = [
+  {
+    color_name: 'game-purple',
+    colorHex: '#862dba',
+  },
+  {
+    color_name: 'game-blue',
+    colorHex: '#00b3ff',
+  },
+  {
+    color_name: 'game-red',
+    colorHex: '#cf1120',
+  },
+  {
+    color_name: 'game-orange',
+    colorHex: '#ed8c2b',
+  },
+  {
+    color_name: 'game-green',
+    colorHex: '#3eb53e',
+  },
+  {
+    color_name: 'game-pink',
+    colorHex: '#fc2aaf',
+  },
 ];
 
 export const AVATARS = [

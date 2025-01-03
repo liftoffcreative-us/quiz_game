@@ -14,8 +14,6 @@ const Questions = ({ categoryId }) => {
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
   const dispatch = usePlayersDispatch();
 
-  console.log(`categoryId: ${categoryId}`);
-
   useEffect(() => {
     // prevent multiple fetches on renders
     if (!hasFetched.current) {
@@ -38,7 +36,7 @@ const Questions = ({ categoryId }) => {
     setSelected(index);
   };
   console.log(`Correct Answer Index: ${questionData.data.correctAnswerIndex}`);
-  
+
   const nextTurn = () => {
     dispatch({
       type: 'NEXT_TURN',

@@ -6,7 +6,7 @@ const TestingComponent = () => {
   const dispatch = usePlayersDispatch();
   const { players, currentTurn } = usePlayersState();
   const [name, setName] = useState('');
-  const [selectedRing, setSelectedRing] = useState(1);
+  const [selectedStar, setSelectedStar] = useState(1);
 
   const addUser = () => {
     dispatch({
@@ -23,11 +23,12 @@ const TestingComponent = () => {
     });
   };
 
-  const addRing = (playerId, ringId) => {
+  const addStar = (playerId, starId) => {
     dispatch({
-      type: 'ADD_RING',
-      payload: { id: playerId, ringId: ringId },
+      type: 'ADD_STAR',
+      payload: { id: playerId, starId: starId },
     });
+    setSelectedStar(1); // reset selected star after adding star
   };
 
   const nextTurn = () => {
@@ -40,6 +41,29 @@ const TestingComponent = () => {
     dispatch({
       type: 'RESET_STATE',
     });
+  };
+
+  const currentPlayerAddStar = (starId) => {
+    dispatch({
+      type: 'CURRENT_PLAYER_ADD_STAR',
+      payload: { starId: starId },
+    });
+  };
+
+  const starSelector = () => {
+    return (
+      <select
+        vaule={selectedStar}
+        onChange={(e) => setSelectedStar(parseInt(e.target.value))}
+        style={{ marginRight: '10px', color: 'black' }}
+      >
+        {[1, 2, 3, 4, 5, 6].map((id) => (
+          <option key={id} value={id} style={{ color: 'black' }}>
+            {id}
+          </option>
+        ))}
+      </select>
+    );
   };
 
   return (
@@ -57,13 +81,31 @@ const TestingComponent = () => {
       <p>Current Turn {currentTurn}</p>
       <button
         onClick={nextTurn}
-        style={{ background: 'white', color: 'black', marginBottom: '20px' }}
+        style={{
+          background: 'white',
+          color: 'black',
+          marginBottom: '20px',
+          marginRight: '20px',
+        }}
       >
         Next Turn
       </button>
+      <br />
+      {starSelector()}
+      <button
+        onClick={() => currentPlayerAddStar(selectedStar)}
+        style={{
+          background: 'white',
+          color: 'black',
+          marginBottom: '20px',
+          marginLeft: '20px',
+        }}
+      >
+        Add Star to Current Player
+      </button>
       {Object.entries(players).map(([_key, player]) => (
         <div
-          key={player.playerId}
+          key={player.id}
           style={{
             border:
               player.position === currentTurn
@@ -76,44 +118,34 @@ const TestingComponent = () => {
           <h1
             style={{ color: player.position === currentTurn ? 'red' : 'white' }}
           >
-            {player.name} ({player.playerId})
+            {player.name} ({player.id})
           </h1>
           <p>Position #{player.position}</p>
           <p>Avatar {player.avatar}</p>
           <p>
-            Rings:
-            {player.rings.map((ring) => (
+            Stars:
+            {player.stars.map((star) => (
               <span
-                key={ring.id}
-                style={{ color: ring.achieved ? 'green' : 'red' }}
+                key={star.id}
+                style={{ color: star.achieved ? 'green' : 'red' }}
               >
-                {ring.id}
+                {star.id}
               </span>
             ))}
           </p>
-          <select
-            vaule={selectedRing}
-            onChange={(e) => setSelectedRing(parseInt(e.target.value))}
-            style={{ marginRight: '10px', color: 'black' }}
-          >
-            {[1, 2, 3, 4, 5, 6].map((id) => (
-              <option key={id} value={id} style={{ color: 'black' }}>
-                {id}
-              </option>
-            ))}
-          </select>
+          {starSelector()}
           <button
             style={{
               background: 'white',
               color: 'black',
             }}
-            onClick={() => addRing(player.playerId, selectedRing)}
+            onClick={() => addStar(player.id, selectedStar)}
           >
-            Add Ring
+            Add Star
           </button>
           <button
             style={{ background: 'white', color: 'black', marginLeft: '30px' }}
-            onClick={() => removePlayer(player.playerId)}
+            onClick={() => removePlayer(player.id)}
           >
             Remove Player
           </button>
