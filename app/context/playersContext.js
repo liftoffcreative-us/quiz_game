@@ -1,7 +1,10 @@
 'use client';
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import { INIT_STARS, PLAYER_COLORS } from '../constants';
-import { reorderPlayers } from '../utils/playersUtils';
+import {
+  reorderPlayers,
+  addStarToPlayerInPlayers,
+} from '../utils/playersUtils';
 
 // Define initial state
 const initialState = {
@@ -10,22 +13,6 @@ const initialState = {
 };
 
 let generateId;
-
-// returns new players[] with seletect player star added
-const addStartToPlayerInPlayers = ({ playerId = null, starId, state }) => {
-  return state.players.map((player, index) => {
-    if (playerId ? player.id === playerId : index === state.currentTurn) {
-      return {
-        ...player,
-        stars: player.stars.map((star) =>
-          star.id === starId ? { ...star, achieved: true } : star
-        ),
-      };
-    } else {
-      return player;
-    }
-  });
-};
 
 // Reducer
 function playersReducer(state, action) {
@@ -52,7 +39,7 @@ function playersReducer(state, action) {
     case 'ADD_STAR':
       return {
         ...state,
-        players: addStartToPlayerInPlayers({
+        players: addStarToPlayerInPlayers({
           playerId: action.payload.id,
           starId: action.payload.starId,
           state,
@@ -61,7 +48,7 @@ function playersReducer(state, action) {
     case 'CURRENT_PLAYER_ADD_STAR':
       return {
         ...state,
-        players: addStartToPlayerInPlayers({
+        players: addStarToPlayerInPlayers({
           starId: action.payload.starId,
           state,
         }),
