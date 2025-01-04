@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
 import Modal from './Modal';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { INIT_TIMER_TIME, INIT_STARS } from '../constants';
+import { INIT_TIMER_TIME } from '../constants';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
@@ -65,8 +65,6 @@ const Questions = ({ categoryId }) => {
       payload: { starId: parseInt(starId) },
     });
   };
-
-  console.log(isStarQuestion);
 
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
