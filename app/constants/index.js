@@ -26,12 +26,12 @@ export const INIT_STARS = [
 ];
 
 export const PLAYER_COLORS = [
-  { id: 1, value: '#ed8c2b' },
+  { id: 1, value: '#862dba' },
   { id: 2, value: '#00b3ff' },
-  { id: 3, value: '#862dba' },
-  { id: 4, value: '#fc2aaf' },
+  { id: 3, value: '#cf1120' },
+  { id: 4, value: '#ed8c2b' },
   { id: 5, value: '#3eb53e' },
-  { id: 6, value: '#cf1120' },
+  { id: 6, value: '#fc2aaf' },
 ];
 
 export const CATEGORY_COLORS = [

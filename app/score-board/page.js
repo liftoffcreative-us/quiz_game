@@ -111,7 +111,7 @@ export default function ScoreBoardPage() {
                       viewBox="0 0 116.3 111.19"
                       className={
                         player.stars[4].achieved
-                          ? 'fill-game-pink stroke-[#fff] stroke-[8px] w-[15%]'
+                          ? 'fill-game-green stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
                     >
@@ -123,7 +123,7 @@ export default function ScoreBoardPage() {
                       viewBox="0 0 116.3 111.19"
                       className={
                         player.stars[5].achieved
-                          ? 'fill-game-green stroke-[#fff] stroke-[8px] w-[15%]'
+                          ? 'fill-game-pink stroke-[#fff] stroke-[8px] w-[15%]'
                           : 'fill-[#b3b3b3] stroke-[#fff] stroke-[8px] w-[15%]'
                       }
                     >
