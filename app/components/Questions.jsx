@@ -120,7 +120,7 @@ const Questions = ({ categoryId }) => {
               height={200}
               className='static w-[80%]'
             />
-            <h2 className='absolute text-[1.8rem] text-white'>CONTINUE</h2>
+            <h2 className={`${playerFont.className} absolute text-[1.8rem] text-white`}>CONTINUE</h2>
           </div>
         </div>
       </Modal>
