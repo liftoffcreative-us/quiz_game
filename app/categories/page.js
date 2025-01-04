@@ -19,6 +19,7 @@ export default function CategoriesPage() {
   const [isLoading, setLoading] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedColorGroupHex, setSelectedColorGroupHex] = useState(null);
+  const [isStarQuestion, setIsStarQuestion] = useState(false);
 
   useEffect(() => {
     fetch('/api/categories')
@@ -33,25 +34,47 @@ export default function CategoriesPage() {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <button
+        onClick={() => setIsStarQuestion(!isStarQuestion)}
+        className="absolute top-4 right-4 p-2 bg-blue-500 text-white rounded"
+      >
+        Toggle View
+      </button>
       <div className="flex flex-col items-center justify-center w-2/3 h-2/3 gap-6">
         <div className={`${playerFont.className} text-[3rem]`}>
           Select Your Color
         </div>
         <div className="flex items-center justify-center gap-4">
-          {CATEGORY_COLORS.map((color, index) => (
-            <Image
-              key={index}
-              src={`/star-${color.color_name}.png`}
-              width={500}
-              height={500}
-              alt="Star Color"
-              className="w-[12%] cursor-pointer"
-              onClick={() => {
-                setSelectedColorGroupHex(color.colorHex);
-                setModalOpen(true);
-              }}
-            />
-          ))}
+          {CATEGORY_COLORS.map((color, index) =>
+            isStarQuestion ? (
+              <Image
+                key={index}
+                src={`/star-${color.color_name}.png`}
+                width={500}
+                height={500}
+                alt="Star Color"
+                className="w-[12%] cursor-pointer"
+                onClick={() => {
+                  setSelectedColorGroupHex(color.colorHex);
+                  setModalOpen(true);
+                }}
+              />
+            ) : (
+              <div
+                key={index}
+                className="w-[12%] h-[12%] cursor-pointer"
+                style={{
+                  backgroundColor: color.colorHex,
+                  width: '60px',
+                  height: '60px',
+                }}
+                onClick={() => {
+                  setSelectedColorGroupHex(color.colorHex);
+                  setModalOpen(true);
+                }}
+              />
+            )
+          )}
         </div>
       </div>
 
