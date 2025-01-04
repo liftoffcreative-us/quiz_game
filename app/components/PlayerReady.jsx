@@ -12,7 +12,7 @@ const playerFont = localFont({
 
 const PlayerReady = () => {
   // get player and turn info from state
-  const { players, currentTurn } = usePlayersState();
+  const { players, currentTurn, answerStreak } = usePlayersState();
   //identify the Current Player
   const currentPlayer = players.filter(
     (player) => player.position === currentTurn
@@ -24,7 +24,7 @@ const PlayerReady = () => {
     >
       <div className="fixed bg-slate-900 opacity-80 w-full h-full"></div>
       <div className="flex flex-col items-center justify-center z-50 w-3/4 h-3/4 bg-gradient-to-b from-grad-lt-blue to-grad-dk-blue rounded-2xl">
-        <h3 className="text-[2.5rem]">It's Now Your Turn</h3>
+        <h3 className="text-[2.5rem]">{answerStreak > 0 ? "It's Still Your Turn" : "It's Now Your Turn"}</h3>
         {currentPlayer.map((player) => {
           return (
             <h2 key={player.id} className="text-[6rem]">
