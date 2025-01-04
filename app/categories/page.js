@@ -34,12 +34,6 @@ export default function CategoriesPage() {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <button
-        onClick={() => setIsStarQuestion(!isStarQuestion)}
-        className="absolute top-4 right-4 p-2 bg-blue-500 text-white rounded"
-      >
-        Toggle View
-      </button>
       <div className="flex flex-col items-center justify-center w-2/3 h-2/3 gap-6">
         <div className={`${playerFont.className} text-[3rem]`}>
           Select Your Color
@@ -75,6 +69,17 @@ export default function CategoriesPage() {
               />
             )
           )}
+        </div>
+        <div className="flex flex-col items-center mt-4">
+          <button
+            onClick={() => setIsStarQuestion(!isStarQuestion)}
+            className="p-2 bg-blue-500 text-white rounded"
+          >
+            {!isStarQuestion ? 'Normal Question' : 'Star Question'}
+          </button>
+          <p className="mt-1 text-sm text-gray-500">
+            Toggle between Normal and Star questions
+          </p>
         </div>
       </div>
 
