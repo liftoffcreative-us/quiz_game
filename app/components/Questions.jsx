@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
 import Modal from './Modal';
-import { useRouter } from 'next/navigation';
-import { INIT_TIMER_TIME } from '../constants';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { INIT_TIMER_TIME, INIT_STARS } from '../constants';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
@@ -18,6 +18,11 @@ const Questions = ({ categoryId }) => {
   const dispatch = usePlayersDispatch();
   const router = useRouter();
   const [isCorrect, setIsCorrect] = useState(false);
+
+  // get isStarQuestion from query params
+  const searchParams = useSearchParams();
+  const isStarQuestion = searchParams.get('isStarQuestion') === 'true';
+  const starId = searchParams.get('starId');
 
   // get answer streak from state and apply timer penalty
   const { answerStreak } = usePlayersState();
@@ -53,6 +58,16 @@ const Questions = ({ categoryId }) => {
     });
   };
 
+  const grantPlayerStar = (starId) => {
+    console.log(starId);
+    dispatch({
+      type: 'CURRENT_PLAYER_ADD_STAR',
+      payload: { starId: parseInt(starId) },
+    });
+  };
+
+  console.log(isStarQuestion);
+
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
       <Link
@@ -78,6 +93,7 @@ const Questions = ({ categoryId }) => {
             className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
               if (isCorrect) {
+                if (isStarQuestion) grantPlayerStar(starId); // if question is a star question, grant player a star
                 updateAnswerStreak('INCREMENT_STREAK');
               } else {
                 updateAnswerStreak('RESET_STREAK');

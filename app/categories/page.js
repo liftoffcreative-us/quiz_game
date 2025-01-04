@@ -96,7 +96,11 @@ export default function CategoriesPage() {
                 <MenuItem
                   key={index}
                   itemKey={`category${category.id}`}
-                  itemHref={`/questions/${category.id}`}
+                  itemHref={`/questions/${category.id}?isStarQuestion=${isStarQuestion.toString()}&starId=${
+                    CATEGORY_COLORS.findIndex(
+                      (color) => color.colorHex == selectedColorGroupHex
+                    ) + 1
+                  }`}
                   src={`/${category.id}.jpg`}
                   alt="Category Image"
                   colorCode={category.color}
