@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
 import Modal from './Modal';
 import { useRouter } from 'next/navigation';
+import { INIT_TIMER_TIME } from '../constants';
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
@@ -15,9 +16,12 @@ const Questions = ({ categoryId }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const hasFetched = useRef(false); // a variable that doesn't trigger a re-render when changed
   const dispatch = usePlayersDispatch();
-  const [correctAnswers, setCorrectAnswers] = useState(0) //variable to track the number of correct answers in a row (effects amount of time on timer)
   const router = useRouter();
   const [isCorrect, setIsCorrect] = useState(false);
+
+  // get answer streak from state and apply timer penalty
+  const { answerStreak } = usePlayersState();
+  const initialTimerTime = INIT_TIMER_TIME - answerStreak * 5;
 
   useEffect(() => {
     // prevent multiple fetches on renders
@@ -43,6 +47,12 @@ const Questions = ({ categoryId }) => {
       type: 'NEXT_TURN',
     });
   };
+  const updateAnswerStreak = (type) => {
+    dispatch({
+      type: type,
+    });
+  };
+
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
       <Link
@@ -67,7 +77,12 @@ const Questions = ({ categoryId }) => {
           <button
             className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
-              !isCorrect && nextTurn(); // if the answer is incorrect, next players turn
+              if (isCorrect) {
+                updateAnswerStreak('INCREMENT_STREAK');
+              } else {
+                updateAnswerStreak('RESET_STREAK');
+                nextTurn(); // if the answer is incorrect, next players turn
+              }
               router.push('/score-board');
             }}
           >
@@ -92,7 +107,7 @@ const Questions = ({ categoryId }) => {
           id="timerSection"
           className="flex flex-col items-center justify-center w-1/4 h-full "
         >
-          <Timer questionAnswered={questionAnswered} />
+          <Timer stopTimer={answerSubmitted} initialTime={initialTimerTime} />
         </div>
         <div
           id="questionSection"

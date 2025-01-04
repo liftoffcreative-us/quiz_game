@@ -91,3 +91,5 @@ export const AVATARS = [
     name: 'newton',
   },
 ];
+
+export const INIT_TIMER_TIME = 30;

@@ -10,6 +10,7 @@ import {
 const initialState = {
   players: [], // Array of player objects
   currentTurn: 0, // Position number of the current player
+  answerStreak: 0, // Number of correct answers in a row
 };
 
 let generateId;
@@ -63,6 +64,19 @@ function playersReducer(state, action) {
       return {
         ...state,
         currentTurn: (state.currentTurn + 1) % state.players.length,
+      };
+    case 'INCREMENT_STREAK':
+      // Maximum streak penalty set to 4
+      const newStreakValue =
+        state.answerStreak >= 4 ? 4 : state.answerStreak + 1;
+      return {
+        ...state,
+        answerStreak: newStreakValue,
+      };
+    case 'RESET_STREAK':
+      return {
+        ...state,
+        answerStreak: 0,
       };
     case 'LOAD_STATE':
       return action.payload;
