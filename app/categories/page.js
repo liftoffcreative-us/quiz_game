@@ -54,14 +54,26 @@ export default function CategoriesPage() {
                 }}
               />
             ) : (
-              <div
+              // <div
+              //   key={index}
+              //   className="w-[12%] h-[12%] cursor-pointer"
+              //   style={{
+              //     backgroundColor: color.colorHex,
+              //     width: '60px',
+              //     height: '60px',
+              //   }}
+              //   onClick={() => {
+              //     setSelectedColorGroupHex(color.colorHex);
+              //     setModalOpen(true);
+              //   }}
+              // />
+              <Image
                 key={index}
-                className="w-[12%] h-[12%] cursor-pointer"
-                style={{
-                  backgroundColor: color.colorHex,
-                  width: '60px',
-                  height: '60px',
-                }}
+                src={`/rect-${color.color_name}.png`}
+                width={500}
+                height={500}
+                alt="Rectangle Color"
+                className="w-[10%] cursor-pointer mx-2 my-2"
                 onClick={() => {
                   setSelectedColorGroupHex(color.colorHex);
                   setModalOpen(true);
