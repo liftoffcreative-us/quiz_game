@@ -66,8 +66,6 @@ const Questions = ({ categoryId }) => {
     });
   };
 
-  console.log(isStarQuestion);
-
   return (
     <div className="flex flex-col items-center  justify-center w-3/4 h-3/4 px-4 py-2">
       <Link
