@@ -8,6 +8,12 @@ import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
 import Modal from './Modal';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { INIT_TIMER_TIME, INIT_STARS } from '../constants';
+import localFont from 'next/font/local';
+
+const playerFont = localFont({
+  src: '../static-fonts/That Sounds Great.otf',
+  display: 'swap',
+});
 
 const Questions = ({ categoryId }) => {
   const [questionData, setQuestionData] = useState(null);
@@ -85,12 +91,17 @@ const Questions = ({ categoryId }) => {
         onClose={() => setAnswerSubmitted(false)}
         modalHeaderText="Results"
       >
-        <div className="text-2xl font-bold text-black">
+        <div className="flex flex-col items-center">
+          <div>
           {isCorrect
-            ? 'Correct!'
-            : `Incorrect! The correct answer was ${questionData.data.answers[questionData.data.correctAnswerIndex]}`}
-          <button
-            className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            ? <div className='text-[4rem] font-bold text-green-400 mt-12'>Correct!</div>
+            : <div className='flex flex-col items-center justify-center text-red-400 '>
+              <h2 className='text-[4rem]'>Incorrect!</h2> 
+              <p className='text-[2rem]'>The correct answer was "<span className='font-bold'>{questionData.data.answers[questionData.data.correctAnswerIndex]}</span>"</p>
+              </div> }
+          </div>
+          <div
+            className="flex items-center justify-center mt-12 cursor-pointer"
             onClick={() => {
               if (isCorrect) {
                 if (isStarQuestion) grantPlayerStar(starId); // if question is a star question, grant player a star
@@ -102,8 +113,15 @@ const Questions = ({ categoryId }) => {
               router.push('/score-board');
             }}
           >
-            Contiue
-          </button>
+            <Image
+              src='/buttonBG.svg'
+              alt='Button Background'
+              width={600}
+              height={200}
+              className='static w-[80%]'
+            />
+            <h2 className='absolute text-[1.8rem] text-white'>CONTINUE</h2>
+          </div>
         </div>
       </Modal>
       <section
