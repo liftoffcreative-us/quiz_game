@@ -26,6 +26,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* <script src="/socket.io/socket.io.js"></script>
+      <script>var socket = io();</script> */}
       <body className="w-screen h-screen bg-game-bg">
         <PlayersProvider>{children}</PlayersProvider>
       </body>
