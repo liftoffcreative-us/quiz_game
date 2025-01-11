@@ -1,12 +1,17 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePlayersState, usePlayersDispatch } from '../context/playersContext';
+// import { supabase } from '@/lib/supabaseClient';
+import { createClient } from '@/utils/supabase/client';
 
-const TestingComponent = () => {
+const TestingComponent = (messagesProp) => {
+  console.log('TESTINGG');
   const dispatch = usePlayersDispatch();
   const { players, currentTurn } = usePlayersState();
   const [name, setName] = useState('');
   const [selectedStar, setSelectedStar] = useState(1);
+
+  console.log(messagesProp);
 
   const addUser = () => {
     dispatch({
@@ -65,6 +70,64 @@ const TestingComponent = () => {
       </select>
     );
   };
+
+  /** supabase test **************************************************** */
+  // supabase test
+  // const supabase = createClient();
+  // console.log
+  // console.log(supabase);
+  const supabase = createClient();
+
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+
+  // Fetch initial messages
+  useEffect(() => {
+    console.log('UPDATING');
+    const fetchMessages = async () => {
+      const { data, error } = await supabase.from('messages').select('*');
+
+      if (error) console.error(error);
+      else {
+        console.log(supabase);
+        console.log('From client');
+        console.log(data);
+        setMessages(data);
+      }
+    };
+
+    fetchMessages();
+
+    // Subscribe to real-time updates
+    const subscription = supabase
+      .channel('public:messages')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'messages' },
+        (payload) => {
+          if (payload.eventType === 'INSERT') {
+            setMessages((prev) => [...prev, payload.new]);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(subscription);
+    };
+  }, []);
+
+  const sendMessage = async () => {
+    if (!newMessage) return;
+
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ content: newMessage }]);
+    if (error) console.error(error);
+    else setNewMessage('');
+  };
+
+  /* END SUPABASE TEST ********************************************/
 
   return (
     <div>
@@ -156,7 +219,30 @@ const TestingComponent = () => {
         onClick={resetPlayersState}
       >
         Reset State
-      </button>{' '}
+      </button>
+      <br />
+      <br />
+      <br />
+      <h1> Supabase Testing </h1>
+      Messages from db
+      <div>
+        {messages.map((message) => (
+          <p key={message.id}>{message.content}</p>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={newMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
+        placeholder="test message"
+        style={{ color: 'black', marginRight: '20px' }}
+      />
+      <button
+        style={{ background: 'white', color: 'black' }}
+        onClick={sendMessage}
+      >
+        Send
+      </button>
     </div>
   );
 };

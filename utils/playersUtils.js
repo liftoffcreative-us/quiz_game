@@ -1,4 +1,4 @@
-import { PLAYER_COLORS } from '../constants';
+import { PLAYER_COLORS } from '../app/constants';
 
 export const reorderPlayers = (players) => {
   return players.map((player, index) => ({

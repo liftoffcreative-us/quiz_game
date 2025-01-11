@@ -1,10 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import { INIT_STARS, PLAYER_COLORS } from '../constants';
-import {
-  reorderPlayers,
-  addStarToPlayerInPlayers,
-} from '../utils/playersUtils';
+import { reorderPlayers, addStarToPlayerInPlayers } from '@/utils/playersUtils';
 
 // Define initial state
 const initialState = {
